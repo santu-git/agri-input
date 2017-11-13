@@ -1,0 +1,62 @@
+<%= form_with(model: warehouse, local: true) do |form| %>
+  <% if warehouse.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(warehouse.errors.count, "error") %> prohibited this warehouse from being saved:</h2>
+
+      <ul>
+      <% warehouse.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :warehouse_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :owner_name %>
+    <%= form.text_field :owner_name, id: :warehouse_owner_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state_id %>
+    <%= form.text_field :state_id, id: :warehouse_state_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :district_id %>
+    <%= form.text_field :district_id, id: :warehouse_district_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :post_office %>
+    <%= form.text_field :post_office, id: :warehouse_post_office %>
+  </div>
+
+  <div class="field">
+    <%= form.label :police_station %>
+    <%= form.text_field :police_station, id: :warehouse_police_station %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pincode %>
+    <%= form.text_field :pincode, id: :warehouse_pincode %>
+  </div>
+
+  <div class="field">
+    <%= form.label :postal_address %>
+    <%= form.text_area :postal_address, id: :warehouse_postal_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status, id: :warehouse_status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

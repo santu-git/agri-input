@@ -10,6 +10,13 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require jquery_ujs
 //= require rails-ujs
 //= require turbolinks
+//= require dynamic_selectable
 //= require_tree .
+
+$(document).ready(function(){
+    $('select[data-dynamic-selectable-url][data-dynamic-selectable-target]').dynamicSelectable()
+});

@@ -4,7 +4,7 @@ class Applicant::WarehousesController < Applicant::BaseController
   # GET /warehouses
   # GET /warehouses.json
   def index
-    @warehouses = Warehouse.all
+    @warehouses = current_applicant_user.warehouses
   end
 
   # GET /warehouses/1
@@ -28,7 +28,7 @@ class Applicant::WarehousesController < Applicant::BaseController
 
     respond_to do |format|
       if @warehouse.save
-        format.html { redirect_to @warehouse, notice: 'Warehouse was successfully created.' }
+        format.html { redirect_to [:applicant,@warehouse], notice: 'Warehouse was successfully created.' }
         format.json { render :show, status: :created, location: @warehouse }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Applicant::WarehousesController < Applicant::BaseController
   def update
     respond_to do |format|
       if @warehouse.update(warehouse_params)
-        format.html { redirect_to @warehouse, notice: 'Warehouse was successfully updated.' }
+        format.html { redirect_to [:applicant,@warehouse], notice: 'Warehouse was successfully updated.' }
         format.json { render :show, status: :ok, location: @warehouse }
       else
         format.html { render :edit }

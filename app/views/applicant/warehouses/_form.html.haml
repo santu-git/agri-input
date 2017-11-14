@@ -15,7 +15,7 @@
     = form.text_field :owner_name, id: :warehouse_owner_name
   .field
     = form.label :state_id
-    = form.select :state_id, State.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }, id: :warehouse_state_id
+    = form.select :state_id, State.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }, id: :warehouse_state_id, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#warehouse_district_id'}
   .field
     = form.label :district_id
     = form.select :district_id, District.all.collect{|p| [p.name['en'], p.id]}, {prompt: 'Select district'},id: :warehouse_district_id
@@ -32,10 +32,8 @@
     = form.label :postal_address
     = form.text_area :postal_address, id: :warehouse_postal_address
   .field
-    = form.label :applicant_user_id
-    = form.text_field :applicant_user_id, id: :warehouse_applicant_user_id
-  .field
     = form.label :status
     = form.text_field :status, id: :warehouse_status
+  = form.hidden_field :applicant_user_id, id: :warehouse_applicant_user_id, value: current_applicant_user.id
   .actions
     = form.submit

@@ -16,5 +16,9 @@ Rails.application.routes.draw do
   #   sessions: 'applicant_users/sessions'
   # }
 
+  resources :states do
+    resources :districts, except: [:index]
+    resources :districts, only: [:index], defaults: { format: 'json' }
+  end
   root 'welcome#index'
 end

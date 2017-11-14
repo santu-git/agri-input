@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :warehouses
+  namespace :applicant do
+    resources :warehouses
+  end
+  
   devise_for :admin_users, path: 'admins'
   devise_for :applicant_users, path: 'applicants'
   

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113105716) do
+ActiveRecord::Schema.define(version: 20171113114433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,8 +88,29 @@ ActiveRecord::Schema.define(version: 20171113105716) do
     t.index ["district_id"], name: "index_subdivisions_on_district_id"
   end
 
+  create_table "warehouses", force: :cascade do |t|
+    t.string "name"
+    t.string "owner_name"
+    t.bigint "state_id"
+    t.bigint "district_id"
+    t.string "post_office"
+    t.string "police_station"
+    t.string "pincode"
+    t.text "postal_address"
+    t.bigint "applicant_user_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["applicant_user_id"], name: "index_warehouses_on_applicant_user_id"
+    t.index ["district_id"], name: "index_warehouses_on_district_id"
+    t.index ["state_id"], name: "index_warehouses_on_state_id"
+  end
+
   add_foreign_key "blocks", "subdivisions"
   add_foreign_key "districts", "states"
   add_foreign_key "mouzas", "blocks"
   add_foreign_key "subdivisions", "districts"
+  add_foreign_key "warehouses", "applicant_users"
+  add_foreign_key "warehouses", "districts"
+  add_foreign_key "warehouses", "states"
 end

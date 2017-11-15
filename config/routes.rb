@@ -2,10 +2,12 @@ Rails.application.routes.draw do
   namespace :applicant do
     resources :warehouses
   end
-  
+
   devise_for :admin_users, path: 'admins'
-  devise_for :applicant_users, path: 'applicants'
-  
+  devise_for :applicant_users, path: 'applicants', controllers: {
+    registrations: 'applicants/registrations'
+  }
+
   # devise_for :applicant_users, controllers: {
   #   registrations: 'applicant_users/registrations',
   #   sessions: 'applicant_users/sessions'

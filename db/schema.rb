@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113114433) do
+ActiveRecord::Schema.define(version: 20171114152146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,24 @@ ActiveRecord::Schema.define(version: 20171113114433) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "applicant_profiles", force: :cascade do |t|
+    t.string "name"
+    t.string "mobile_no"
+    t.string "gender"
+    t.string "prefer_language"
+    t.string "id_card_type"
+    t.string "id_card_number"
+    t.date "dob"
+    t.bigint "applicant_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "id_card_image_file_name"
+    t.string "id_card_image_content_type"
+    t.integer "id_card_image_file_size"
+    t.datetime "id_card_image_updated_at"
+    t.index ["applicant_user_id"], name: "index_applicant_profiles_on_applicant_user_id"
   end
 
   create_table "applicant_users", force: :cascade do |t|
@@ -106,6 +124,7 @@ ActiveRecord::Schema.define(version: 20171113114433) do
     t.index ["state_id"], name: "index_warehouses_on_state_id"
   end
 
+  add_foreign_key "applicant_profiles", "applicant_users"
   add_foreign_key "blocks", "subdivisions"
   add_foreign_key "districts", "states"
   add_foreign_key "mouzas", "blocks"

@@ -14,11 +14,11 @@
   .field
     = f.label :password_confirmation
     = f.password_field :password_confirmation, autocomplete: "off"
-  
-  = f.fields_for ApplicantProfile.new do |f_p|
-    = f.label :name
-    = f.text_field :name
-    
+
+  = f.fields_for :applicant_profile_attributes do |p|
+    = p.label :name
+    = p.text_field :name
+
   .actions
     = f.submit "Sign up"
 = render "applicant_users/shared/links"

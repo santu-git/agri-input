@@ -1,5 +1,5 @@
 %h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+= form_for resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true } do |f|
   = devise_error_messages!
   .field
     = f.label :email
@@ -16,9 +16,36 @@
     = f.password_field :password_confirmation, autocomplete: "off"
 
   = f.fields_for :applicant_profile_attributes do |p|
-    = p.label :name
-    = p.text_field :name
-
+    .field
+      = p.label :name, "Full Name"
+      = p.text_field :name
+    .field
+      = p.label :mobile_no, "Mobile"
+      = p.text_field :mobile_no
+    .field
+      = p.radio_button :gender, 'male'
+      = p.label :male
+    .field
+      = p.radio_button :gender, 'female'
+      = p.label :female
+    .field
+      =p.label :prefer_language
+      =p.select :prefer_language, [['English','en'],['Bengali','en']]
+    .field
+      =p.label :id_card_type, 'ID Card type'
+      =p.select :prefer_language, [['Voter Card','voter_card'],['PAN Card','pan_card']]
+    .field
+      =p.label :id_card_number, 'ID Card number'
+      =p.text_field :id_card_number
+    .field
+      =p.label :dob
+      =p.date_field :dob
+    .field
+      =p.label :id_card_image, "ID Card image"
+      =p.file_field :id_card_image
+    .field
+      =p.label :dob
+      =p.date_field :id_card_image
   .actions
     = f.submit "Sign up"
 = render "applicant_users/shared/links"

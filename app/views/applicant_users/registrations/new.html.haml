@@ -29,23 +29,48 @@
       = p.radio_button :gender, 'female'
       = p.label :female
     .field
-      =p.label :prefer_language
-      =p.select :prefer_language, [['English','en'],['Bengali','en']]
+      = p.label :prefer_language
+      = p.select :prefer_language, [['English','en'],['Bengali','en']]
     .field
-      =p.label :id_card_type, 'ID Card type'
-      =p.select :prefer_language, [['Voter Card','voter_card'],['PAN Card','pan_card']]
+      = p.label :id_card_type, 'ID Card type'
+      = p.select :id_card_type, [['Voter Card','voter_card'],['PAN Card','pan_card']]
     .field
-      =p.label :id_card_number, 'ID Card number'
-      =p.text_field :id_card_number
+      = p.label :id_card_number, 'ID Card number'
+      = p.text_field :id_card_number
     .field
-      =p.label :dob
-      =p.date_field :dob
+      = p.label :id_card_image, "ID Card image"
+      = p.file_field :id_card_image
     .field
-      =p.label :id_card_image, "ID Card image"
-      =p.file_field :id_card_image
+      = p.label :dob
+      = p.date_field :dob
+  = f.fields_for :communication_address_attributes do |ca|
     .field
-      =p.label :dob
-      =p.date_field :id_card_image
+      = ca.label :street_no
+      = ca.text_field :street_no
+    .field
+      = ca.label :post_office
+      = ca.text_field :post_office
+    .field
+      = ca.label :police_station
+      = ca.text_field :police_station
+    .field
+      = ca.label :pin_code
+      = ca.text_field :pin_code
+    .field
+      = ca.label :state_id
+      = ca.select :state_id, State.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#warehouse_district_id'}
+    .field
+      = ca.label :district_id
+      = ca.select :district_id, District.all.collect{|p| [p.name['en'], p.id]}, {prompt: 'Select district'}
+    .field
+      = ca.label :extended_type, "Address Type"
+      = ca.select :extended_type, [['Urban','urban'],['Rural', 'rural']], {prompt: 'Select Address type'}
+    -# #extended-form
+
+    #extended_urban_from.dn
+      = render 'extended_urban', form_object: ca
+    #extended_rural_from.dn
+      = render 'extended_rural', form_object: ca
   .actions
     = f.submit "Sign up"
 = render "applicant_users/shared/links"

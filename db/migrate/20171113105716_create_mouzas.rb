@@ -3,8 +3,8 @@ class CreateMouzas < ActiveRecord::Migration[5.1]
     enable_extension 'hstore' unless extension_enabled?('hstore')
     create_table :mouzas do |t|
       t.hstore :name
+      t.string :jl_number
       t.references :block, foreign_key: true
-
       t.timestamps
     end
   end

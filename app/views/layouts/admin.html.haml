@@ -17,28 +17,30 @@
         / Sidebar Links
         %ul.list-unstyled.components
           %li.active
-            %a{:href => "#"} Home
+            %a{:href => "#"} Dashboard
           %li
-            %a{:href => "#"} About
+            %a{:href => "#"} Applicants
           %li
             / Link with dropdown items
-            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#homeSubmenu"} Pages
-            %ul#homeSubmenu.collapse.list-unstyled
+            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#usersSubmenu"} Users
+            %ul#usersSubmenu.collapse.list-unstyled
               %li
-                %a{:href => "#"} Page
+                %a{:href => "#"} All users
               %li
-                %a{:href => "#"} Page
-              %li
-                %a{:href => "#"} Page
+                %a{:href => "#"} Add new
           %li
-            %a{:href => "#"} Portfolio
+            %a{:href => "#"} Education
           %li
-            %a{:href => "#"} Contact
+            %a{:href => "#"} Sales applications
+          %li
+            %a{:href => "#"} Role and certificate
+          %li
+            = link_to  "Logout", destroy_admin_user_session_path, method: :delete
 
       #content
-        %button#sidebarCollapse.btn.btn-info.navbar-btn{:type => "button"}
-          %i.glyphicon.glyphicon-align-left
-          Toggle Sidebar
+        -# %button#sidebarCollapse.btn.btn-info.navbar-btn{:type => "button"}
+        -#   %i.glyphicon.glyphicon-align-left
+        -#   Toggle Sidebar
         = yield
 
   %footer

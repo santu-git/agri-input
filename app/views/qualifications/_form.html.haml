@@ -1,4 +1,4 @@
-= form_for [:applicant,@qualification] do |f|
+= form_for @qualification do |f|
   - if @qualification.errors.any?
     #error_explanation
       %h2= "#{pluralize(@qualification.errors.count, "error")} prohibited this qualification from being saved:"
@@ -31,6 +31,6 @@
     = f.label :cretificate_image
     = f.file_field :cretificate_image
   = f.hidden_field :applicant_user_id, id: :qualification_applicant_user_id, value: current_applicant_user.id
-  
+
   .actions
     = f.submit 'Save'

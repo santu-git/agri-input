@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114152146) do
+ActiveRecord::Schema.define(version: 20171116144412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,23 @@ ActiveRecord::Schema.define(version: 20171114152146) do
     t.index ["subdivision_id"], name: "index_blocks_on_subdivision_id"
   end
 
+  create_table "communication_addresses", force: :cascade do |t|
+    t.string "street_no"
+    t.string "post_office"
+    t.string "police_station"
+    t.string "pin_code"
+    t.bigint "applicant_user_id"
+    t.bigint "state_id"
+    t.bigint "district_id"
+    t.string "extended_type"
+    t.hstore "extended_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["applicant_user_id"], name: "index_communication_addresses_on_applicant_user_id"
+    t.index ["district_id"], name: "index_communication_addresses_on_district_id"
+    t.index ["state_id"], name: "index_communication_addresses_on_state_id"
+  end
+
   create_table "districts", force: :cascade do |t|
     t.hstore "name"
     t.bigint "state_id"
@@ -86,6 +103,7 @@ ActiveRecord::Schema.define(version: 20171114152146) do
 
   create_table "mouzas", force: :cascade do |t|
     t.hstore "name"
+    t.string "jl_number"
     t.bigint "block_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -126,6 +144,9 @@ ActiveRecord::Schema.define(version: 20171114152146) do
 
   add_foreign_key "applicant_profiles", "applicant_users"
   add_foreign_key "blocks", "subdivisions"
+  add_foreign_key "communication_addresses", "applicant_users"
+  add_foreign_key "communication_addresses", "districts"
+  add_foreign_key "communication_addresses", "states"
   add_foreign_key "districts", "states"
   add_foreign_key "mouzas", "blocks"
   add_foreign_key "subdivisions", "districts"

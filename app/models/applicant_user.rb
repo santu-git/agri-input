@@ -7,7 +7,7 @@ class ApplicantUser < ApplicationRecord
   has_one :applicant_profile#, class_name: 'ApplicantProfile', foreign_key: 'applicant_user_id'
   has_one :communication_address
   has_many :warehouses
- 
+  has_many :qualifications
   accepts_nested_attributes_for :applicant_profile, allow_destroy: true
   accepts_nested_attributes_for :communication_address, allow_destroy: true
 end

@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+
   namespace :admin do
     get '', to: 'welcome#index', as: 'root'
   end
 
   resources :warehouses
+  resources :qualifications
 
   resources :states do
     resources :districts, except: [:index]

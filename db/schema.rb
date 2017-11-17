@@ -103,7 +103,6 @@ ActiveRecord::Schema.define(version: 20171116144412) do
 
   create_table "mouzas", force: :cascade do |t|
     t.hstore "name"
-    t.string "jl_number"
     t.bigint "block_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

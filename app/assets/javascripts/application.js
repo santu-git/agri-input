@@ -13,10 +13,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require rails-ujs
-//= require turbolinks
 //= require dynamic_selectable
 //= require_tree .
 
-$(document).ready(function(){
-    $('select[data-dynamic-selectable-url][data-dynamic-selectable-target]').dynamicSelectable()
+$(document).ready(function () {
+  $('select[data-dynamic-selectable-url][data-dynamic-selectable-target]').dynamicSelectable()
+  $('#applicant_user_communication_address_attributes_extended_type').on('change', function () {
+
+    if (this.value === 'rural') {
+      $('#extended_urban_from').hide();
+      $('#extended_rural_from').show();
+    }
+    if (this.value === 'urban') {
+      $('#extended_urban_from').show();
+      $('#extended_rural_from').hide();
+    }
+    //$('#extended-form').html("<%= j (render :partial => 'extended_rural') %>");
+  });
 });

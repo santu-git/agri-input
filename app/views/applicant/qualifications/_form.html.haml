@@ -1,0 +1,36 @@
+= form_for [:applicant,@qualification] do |f|
+  - if @qualification.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@qualification.errors.count, "error")} prohibited this qualification from being saved:"
+      %ul
+        - @qualification.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :resource_type
+    = f.select :resource_type, [['Self','self'],['Others','others']]
+  .field
+    = f.label :resource_name
+    = f.text_field :resource_name
+  .field
+    = f.label :education
+    = f.select :education_id, Education.all.collect{|e| [e.name[@language],e.id]}
+  .field
+    = f.label :passing_institute
+    = f.text_field :passing_institute
+  .field
+    = f.label :passing_year
+    = f.text_field :passing_year
+  .field
+    = f.label :certificate_number
+    = f.text_field :certificate_number
+  .field
+    = f.label :status
+    = f.select :status , [['Active', 'active'],['Inactive','inactive']]
+  .field
+    = f.label :cretificate_image
+    = f.file_field :cretificate_image
+  = f.hidden_field :applicant_user_id, id: :qualification_applicant_user_id, value: current_applicant_user.id
+  
+  .actions
+    = f.submit 'Save'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116144412) do
+ActiveRecord::Schema.define(version: 20171117054228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,12 @@ ActiveRecord::Schema.define(version: 20171116144412) do
     t.index ["state_id"], name: "index_districts_on_state_id"
   end
 
+  create_table "educations", force: :cascade do |t|
+    t.hstore "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "mouzas", force: :cascade do |t|
     t.hstore "name"
     t.string "jl_number"
@@ -108,6 +114,25 @@ ActiveRecord::Schema.define(version: 20171116144412) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["block_id"], name: "index_mouzas_on_block_id"
+  end
+
+  create_table "qualifications", force: :cascade do |t|
+    t.string "resource_type"
+    t.string "resource_name"
+    t.bigint "education_id"
+    t.string "passing_institute"
+    t.string "passing_year"
+    t.string "certificate_number"
+    t.string "status"
+    t.bigint "applicant_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "certificate_image_file_name"
+    t.string "certificate_image_content_type"
+    t.integer "certificate_image_file_size"
+    t.datetime "certificate_image_updated_at"
+    t.index ["applicant_user_id"], name: "index_qualifications_on_applicant_user_id"
+    t.index ["education_id"], name: "index_qualifications_on_education_id"
   end
 
   create_table "states", force: :cascade do |t|
@@ -149,6 +174,8 @@ ActiveRecord::Schema.define(version: 20171116144412) do
   add_foreign_key "communication_addresses", "states"
   add_foreign_key "districts", "states"
   add_foreign_key "mouzas", "blocks"
+  add_foreign_key "qualifications", "applicant_users"
+  add_foreign_key "qualifications", "educations"
   add_foreign_key "subdivisions", "districts"
   add_foreign_key "warehouses", "applicant_users"
   add_foreign_key "warehouses", "districts"

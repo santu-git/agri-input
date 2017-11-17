@@ -1,0 +1,14 @@
+@import "bootstrap";
+@font-face {
+  font-family: 'Product sans';
+  src: local('Product Sans'), url('fonts/ProductSansRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Product sans';
+  font-style: normal;
+  font-weight: bold;
+  src: local('Product Sans'), url('fonts/ProductSansBold.ttf') format('truetype');
+}
+@import "theme";

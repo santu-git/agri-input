@@ -2,11 +2,50 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Agrisnet
+    %title Agrisnet Admin
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
-  %body
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+  %body.admin-body
+    .wrapper
+      %nav#sidebar
+        / Sidebar Header
+        .sidebar-header
+          %h1.header-2
+            =image_tag('logo.png', width: 40)
+            agrisnet
+        / Sidebar Links
+        %ul.list-unstyled.components
+          %li.active
+            %a{:href => "#"} Dashboard
+          %li
+            %a{:href => "#"} Applicants
+          %li
+            / Link with dropdown items
+            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#usersSubmenu"} Users
+            %ul#usersSubmenu.collapse.list-unstyled
+              %li
+                %a{:href => "#"} All users
+              %li
+                %a{:href => "#"} Add new
+          %li
+            %a{:href => "#"} Education
+          %li
+            %a{:href => "#"} Sales applications
+          %li
+            %a{:href => "#"} Role and certificate
+          %li
+            = link_to  "Logout", destroy_admin_user_session_path, method: :delete
+
+      #content
+        -# %button#sidebarCollapse.btn.btn-info.navbar-btn{:type => "button"}
+        -#   %i.glyphicon.glyphicon-align-left
+        -#   Toggle Sidebar
+        = yield
+
+  %footer
+    :javascript
+      $('#sidebarCollapse').on('click', function () {
+          $('#sidebar').toggleClass('active');
+          $('#content').toggleClass('active');
+      });

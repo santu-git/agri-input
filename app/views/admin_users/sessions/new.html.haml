@@ -1,17 +1,16 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "admin_users/shared/links"
+.signin-container
+  .content
+    .container
+      .row.justify-content-md-center
+        .col.col-lg-5.login-box
+          %h1.header-1
+            =image_tag('logo.png', width: 60)
+            sign in
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .md-form.white
+              = f.email_field :email, autofocus: true, autocomplete: "off", class: 'form-control', placeholder: 'Email'
+            .md-form.white
+              = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password'
+            .actions
+              = f.submit "Log in", class: 'btn btn-primary right'
+          =# render "applicant_users/shared/links"

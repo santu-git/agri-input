@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :custom_authentication, :set_language
+  # before_action :custom_authentication, :set_language
+  before_action :set_language
 
   def custom_authentication
     if current_admin_user

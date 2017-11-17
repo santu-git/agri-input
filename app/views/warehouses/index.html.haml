@@ -27,8 +27,8 @@
         %td= warehouse.postal_address
         %td= warehouse.applicant_user
         %td= warehouse.status
-        %td= link_to 'Show', applicant_warehouse_path(warehouse)
-        %td= link_to 'Edit', edit_applicant_warehouse_path(warehouse)
-        %td= link_to 'Destroy', [:applicant,warehouse], method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Show', warehouse_path(warehouse)
+        %td= link_to 'Edit', edit_warehouse_path(warehouse)
+        %td= link_to 'Destroy', warehouse, method: :delete, data: { confirm: 'Are you sure?' }
 %br/
-= link_to 'New Warehouse', new_applicant_warehouse_path
+= link_to 'New Warehouse', new_warehouse_path

@@ -1,4 +1,4 @@
-class Applicant::WarehousesController < Applicant::BaseController
+class WarehousesController < ApplicantBaseController
   before_action :set_warehouse, only: [:show, :edit, :update, :destroy]
 
   # GET /warehouses
@@ -28,7 +28,7 @@ class Applicant::WarehousesController < Applicant::BaseController
 
     respond_to do |format|
       if @warehouse.save
-        format.html { redirect_to [:applicant,@warehouse], notice: 'Warehouse was successfully created.' }
+        format.html { redirect_to @warehouse, notice: 'Warehouse was successfully created.' }
         format.json { render :show, status: :created, location: @warehouse }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Applicant::WarehousesController < Applicant::BaseController
   def update
     respond_to do |format|
       if @warehouse.update(warehouse_params)
-        format.html { redirect_to [:applicant,@warehouse], notice: 'Warehouse was successfully updated.' }
+        format.html { redirect_to @warehouse, notice: 'Warehouse was successfully updated.' }
         format.json { render :show, status: :ok, location: @warehouse }
       else
         format.html { render :edit }

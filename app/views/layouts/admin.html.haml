@@ -6,7 +6,44 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
-  %body
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+  %body.admin-body
+    .wrapper
+      %nav#sidebar
+        / Sidebar Header
+        .sidebar-header
+          %h1.header-2
+            =image_tag('logo.png', width: 40)
+            agrisnet
+        / Sidebar Links
+        %ul.list-unstyled.components
+          %li.active
+            %a{:href => "#"} Home
+          %li
+            %a{:href => "#"} About
+          %li
+            / Link with dropdown items
+            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#homeSubmenu"} Pages
+            %ul#homeSubmenu.collapse.list-unstyled
+              %li
+                %a{:href => "#"} Page
+              %li
+                %a{:href => "#"} Page
+              %li
+                %a{:href => "#"} Page
+          %li
+            %a{:href => "#"} Portfolio
+          %li
+            %a{:href => "#"} Contact
+
+      #content
+        %button#sidebarCollapse.btn.btn-info.navbar-btn{:type => "button"}
+          %i.glyphicon.glyphicon-align-left
+          Toggle Sidebar
+        = yield
+
+  %footer
+    :javascript
+      $('#sidebarCollapse').on('click', function () {
+          $('#sidebar').toggleClass('active');
+          $('#content').toggleClass('active');
+      });

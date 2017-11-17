@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Agrisnet
+    %title Applicant | Agrisnet
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
@@ -11,3 +11,5 @@
     %p.alert= alert
     %h1 Applicant Layout
     = yield
+    %br
+    = link_to  "Logout", destroy_applicant_user_session_path, method: :delete

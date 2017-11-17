@@ -26,10 +26,10 @@
         %td= qualification.certificate_number
         %td= qualification.status
         %td= qualification.applicant_user
-        %td= link_to 'Show', [:applicant,qualification]
-        %td= link_to 'Edit', edit_applicant_qualification_path(qualification)
-        %td= link_to 'Destroy', [:applicant,qualification], method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Show', qualification
+        %td= link_to 'Edit', edit_qualification_path(qualification)
+        %td= link_to 'Destroy', qualification, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Qualification', new_applicant_qualification_path
+= link_to 'New Qualification', new_qualification_path

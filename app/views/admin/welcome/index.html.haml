@@ -1,0 +1,5 @@
+%p#notice= notice
+%h1 Welcomes
+%p
+  Admin :#{admin_user_signed_in?}
+= link_to  "Logout", destroy_admin_user_session_path, method: :delete

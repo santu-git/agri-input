@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  
   namespace :applicant do
     resources :warehouses
+    resources :qualifications
   end
 
   devise_for :admin_users, path: 'admins'

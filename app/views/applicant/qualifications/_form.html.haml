@@ -1,4 +1,4 @@
-= form_for @qualification do |f|
+= form_for [:applicant,@qualification] do |f|
   - if @qualification.errors.any?
     #error_explanation
       %h2= "#{pluralize(@qualification.errors.count, "error")} prohibited this qualification from being saved:"

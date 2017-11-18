@@ -18,19 +18,19 @@
         / Sidebar Links
         %ul.list-unstyled.components
           %li.active
-            %a{:href => "#"} Dashboard
+            %a{:href => root_path} Dashboard
           %li
             %a{:href => "#"} Sales applications
           %li
             / Link with dropdown items
-            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#usersSubmenu"} Education
+            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#usersSubmenu"} Qualification
             %ul#usersSubmenu.collapse.list-unstyled
               %li
-                %a{:href => "#"} User education
+                %a{:href => applicant_qualifications_path} List qualification
               %li
-                %a{:href => "#"} Add new
+                %a{:href => new_applicant_qualification_path} New qualification
           %li
-            %a{:href => "#"} Storage address
+            %a{:href => applicant_warehouses_path} Storage address
           %li
             = link_to  "Logout", destroy_applicant_user_session_path, method: :delete
 

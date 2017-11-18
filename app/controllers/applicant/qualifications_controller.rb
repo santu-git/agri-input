@@ -1,4 +1,4 @@
-class QualificationsController < ApplicantBaseController
+class Applicant::QualificationsController < Applicant::BaseController
   before_action :set_qualification, only: [:show, :edit, :update, :destroy]
 
   # GET /qualifications
@@ -28,7 +28,7 @@ class QualificationsController < ApplicantBaseController
 
     respond_to do |format|
       if @qualification.save
-        format.html { redirect_to @qualification, notice: 'Qualification was successfully created.' }
+        format.html { redirect_to [:applicant,@qualification], notice: 'Qualification was successfully created.' }
         format.json { render :show, status: :created, location: @qualification }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class QualificationsController < ApplicantBaseController
   def update
     respond_to do |format|
       if @qualification.update(qualification_params)
-        format.html { redirect_to @qualification, notice: 'Qualification was successfully updated.' }
+        format.html { redirect_to [:applicant,@qualification], notice: 'Qualification was successfully updated.' }
         format.json { render :show, status: :ok, location: @qualification }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class QualificationsController < ApplicantBaseController
   def destroy
     @qualification.destroy
     respond_to do |format|
-      format.html { redirect_to qualifications_url, notice: 'Qualification was successfully destroyed.' }
+      format.html { redirect_to applicant_qualifications_url, notice: 'Qualification was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

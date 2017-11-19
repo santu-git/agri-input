@@ -12,10 +12,10 @@
     - @educations.each do |education|
       %tr
         %td= education.name
-        %td= link_to 'Show', education
-        %td= link_to 'Edit', edit_education_path(education)
-        %td= link_to 'Destroy', education, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Show', [:admin,education]
+        %td= link_to 'Edit', edit_admin_education_path(education)
+        %td= link_to 'Destroy', [:admin,education], method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
-= link_to 'New Education', new_education_path
+= link_to 'New Education', new_admin_education_path

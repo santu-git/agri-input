@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171117054228) do
+ActiveRecord::Schema.define(version: 20171119101358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "admin_profiles", force: :cascade do |t|
+    t.string "name"
+    t.string "mobile_no"
+    t.string "gender"
+    t.string "prefer_language"
+    t.bigint "admin_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_user_id"], name: "index_admin_profiles_on_admin_user_id"
+  end
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -93,6 +104,25 @@ ActiveRecord::Schema.define(version: 20171117054228) do
     t.index ["state_id"], name: "index_communication_addresses_on_state_id"
   end
 
+  create_table "designations", force: :cascade do |t|
+    t.bigint "state_id"
+    t.bigint "district_id"
+    t.bigint "block_id"
+    t.bigint "admin_user_id"
+    t.bigint "role_id"
+    t.date "joining_date"
+    t.date "ending_date"
+    t.string "reason"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_user_id"], name: "index_designations_on_admin_user_id"
+    t.index ["block_id"], name: "index_designations_on_block_id"
+    t.index ["district_id"], name: "index_designations_on_district_id"
+    t.index ["role_id"], name: "index_designations_on_role_id"
+    t.index ["state_id"], name: "index_designations_on_state_id"
+  end
+
   create_table "districts", force: :cascade do |t|
     t.hstore "name"
     t.bigint "state_id"
@@ -109,6 +139,7 @@ ActiveRecord::Schema.define(version: 20171117054228) do
 
   create_table "mouzas", force: :cascade do |t|
     t.hstore "name"
+    t.string "jl_number"
     t.bigint "block_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -132,6 +163,12 @@ ActiveRecord::Schema.define(version: 20171117054228) do
     t.datetime "certificate_image_updated_at"
     t.index ["applicant_user_id"], name: "index_qualifications_on_applicant_user_id"
     t.index ["education_id"], name: "index_qualifications_on_education_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "states", force: :cascade do |t|
@@ -166,11 +203,17 @@ ActiveRecord::Schema.define(version: 20171117054228) do
     t.index ["state_id"], name: "index_warehouses_on_state_id"
   end
 
+  add_foreign_key "admin_profiles", "admin_users"
   add_foreign_key "applicant_profiles", "applicant_users"
   add_foreign_key "blocks", "subdivisions"
   add_foreign_key "communication_addresses", "applicant_users"
   add_foreign_key "communication_addresses", "districts"
   add_foreign_key "communication_addresses", "states"
+  add_foreign_key "designations", "admin_users"
+  add_foreign_key "designations", "blocks"
+  add_foreign_key "designations", "districts"
+  add_foreign_key "designations", "roles"
+  add_foreign_key "designations", "states"
   add_foreign_key "districts", "states"
   add_foreign_key "mouzas", "blocks"
   add_foreign_key "qualifications", "applicant_users"

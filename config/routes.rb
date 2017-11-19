@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get '', to: 'dashboard#index', as: 'root'
     resources :educations
     resources :applicants, only: [:index, :show]
+    resources :users
   end
 
   namespace :applicant do

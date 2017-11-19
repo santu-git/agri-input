@@ -28,7 +28,7 @@ class Admin::EducationsController < Admin::BaseController
 
     respond_to do |format|
       if @education.save
-        format.html { redirect_to @education, notice: 'Education was successfully created.' }
+        format.html { redirect_to [:admin,@education], notice: 'Education was successfully created.' }
         format.json { render :show, status: :created, location: @education }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Admin::EducationsController < Admin::BaseController
   def update
     respond_to do |format|
       if @education.update(education_params)
-        format.html { redirect_to @education, notice: 'Education was successfully updated.' }
+        format.html { redirect_to [:admin,@education], notice: 'Education was successfully updated.' }
         format.json { render :show, status: :ok, location: @education }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class Admin::EducationsController < Admin::BaseController
   def destroy
     @education.destroy
     respond_to do |format|
-      format.html { redirect_to educations_url, notice: 'Education was successfully destroyed.' }
+      format.html { redirect_to admin_educations_url, notice: 'Education was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class Admin::EducationsController < Admin::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def education_params
-      params.require(:education).permit(:name)
+      params.require(:education).permit(name: {})
     end
 end

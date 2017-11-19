@@ -1,0 +1,19 @@
+= form_for [:admin,@education] do |f|
+  - if @education.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@education.errors.count, "error")} prohibited this education from being saved:"
+      %ul
+        - @education.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name, "Name"
+    %br/
+    = f.fields_for :name do |n|
+      = n.label :en, "English" 
+      = n.text_field :en
+      = n.label :bn, "Bengali" 
+      = n.text_field :bn
+  
+  .actions
+    = f.submit 'Save'

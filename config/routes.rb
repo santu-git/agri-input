@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    get '', to: 'welcome#index', as: 'root'
+    get '', to: 'dashboard#index', as: 'root'
+    resources :educations
   end
 
   namespace :applicant do

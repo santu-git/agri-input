@@ -1,4 +1,4 @@
-class Admin::WelcomeController < Admin::BaseController
+class Admin::DashboardController < Admin::BaseController
 
   # GET /welcomes
   # GET /welcomes.json

@@ -20,6 +20,7 @@
 
 $(document).ready(function () {
   $('select[data-dynamic-selectable-url][data-dynamic-selectable-target]').dynamicSelectable()
+  
   $('#applicant_user_communication_address_attributes_extended_type').on('change', function () {
 
     if (this.value === 'rural') {

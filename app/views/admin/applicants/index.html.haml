@@ -1,0 +1,17 @@
+%h1 Listing applicants
+
+%table
+  %thead
+    %tr
+      %th ID
+      %th Email
+      %th Action
+
+  %tbody
+    - @applicants.each do |applicant|
+      %tr
+        %td= applicant.id
+        %td= applicant.email
+        %td= link_to 'Show', admin_applicant_path(applicant)
+  /= paginate @applicants 
+%br

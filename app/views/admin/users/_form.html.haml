@@ -27,18 +27,21 @@
     .field
       = ap.label :prefer_language
       = ap.select :prefer_language, [['English','en'],['Bengali','en']]
-    = f.fields_for :designations_attributes do |d|
+    = f.fields_for :designations do |d|
       .field
-        = d.state_id
+        = d.label :state_id
         = d.select :state_id, State.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#admin_user_district_id'}
       .field
-        = d.district_id
+        = d.label :district_id
         = d.select :district_id, District.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }
       .field
-        = d.subdivision_id
+        = d.label :subdivision_id
         = d.select :subdivision_id, Subdivision.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }
       .field
-        = d.block_id
+        = d.label :block_id
         = d.select :block_id, Block.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }
+      .field
+        = d.label :role_id
+        = d.select :role_id, Role.all.collect{|p| [p.name, p.id]}
   .actions
     = f.submit 'Save'

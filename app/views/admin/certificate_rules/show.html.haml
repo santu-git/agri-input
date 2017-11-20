@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Jurisdiction:
+  = @certificate_rule.jurisdiction
+%p
+  %b Certification type:
+  = @certificate_rule.certification_type
+%p
+  %b New application:
+  = @certificate_rule.new_application
+%p
+  %b Certificate form:
+  = @certificate_rule.certificate_form
+%p
+  %b Renew application:
+  = @certificate_rule.renew_application
+%p
+  %b Role:
+  = @certificate_rule.role
+%p
+  %b Validity:
+  = @certificate_rule.validity
+
+= link_to 'Edit', edit_certificate_rule_path(@certificate_rule)
+\|
+= link_to 'Back', certificate_rules_path

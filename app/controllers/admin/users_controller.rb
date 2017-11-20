@@ -15,6 +15,7 @@ class Admin::UsersController < Admin::BaseController
   # GET /users/new
   def new
     @user = AdminUser.new
+    @user.designations.build
   end
 
   # GET /users/1/edit
@@ -69,6 +70,7 @@ class Admin::UsersController < Admin::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.fetch(:user, {})
+      params.require(:admin_user).permit(:email, :password, admin_profile_attributes: [:name, :mobile_no, :gender, :prefer_language], designations_attributes: [:state_id,:district_id,:subdivision_id,:block_id, :role_id])
+      
     end
 end

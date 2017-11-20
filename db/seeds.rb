@@ -111,8 +111,37 @@ end
 
 puts "Creating Admin User ......"
 
-# AdminUser.create({
-#   eamil: "admin@gmail.com",
-#   password: "12345678",
+AdminUser.create({
+  email: "admin@gmail.com",
+  password: "12345678",
+  admin_profile_attributes: {
+    name: "Admin User 1", 
+    mobile_no: "9477413039",
+    prefer_language: "en"
+  }, 
+  designations_attributes: [ 
+    {
+      state_id: 1, 
+      district_id: 1, 
+      subdivision_id: 1, 
+      block_id: 1, 
+      role_id: 1
+    }
+  ]
+})
 
-# })
+Jurisdiction.create([
+  {name: 'State'},
+  {name: 'District'},
+  {name: 'Subdivision'}
+])
+
+CertificationType.create([
+  {name: 'Wholesalers Marketing Certificate'},
+  {name: 'Retailers Marketing Certificate'},
+])
+
+FormMaster.create([
+  {name: 'Form A1'},
+  {name: 'Form A2'}
+])

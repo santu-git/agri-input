@@ -62,3 +62,7 @@ gem "paperclip", "~> 5.0.0"
 
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'popper_js', '~> 1.12.3'
+
+group :development do
+  gem 'faker'
+end

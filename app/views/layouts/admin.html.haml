@@ -23,9 +23,9 @@
             %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#usersSubmenu"} User Manager
             %ul#usersSubmenu.collapse.list-unstyled
               %li
-                %a{:href => "#"} List
+                %a{:href => admin_users_path} List
               %li
-                %a{:href => "#"} Create
+                %a{:href => new_admin_user_path} Create
           %li
             / Link with dropdown items
             %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#educationsSubmenu"} Education Manager
@@ -43,7 +43,13 @@
           %li
             %a{:href => "#"} Sales applications
           %li
-            %a{:href => "#"} Role and certificate
+            / Link with dropdown items
+            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#certificateRuleSubmenu"} Role & Certificate
+            %ul#certificateRuleSubmenu.collapse.list-unstyled
+              %li
+                %a{:href => new_admin_certificate_rule_path} Create Role & Certificate
+              %li
+                %a{:href => admin_certificate_rules_path} List Role & Certificate
           %li
             = link_to  "Logout", destroy_admin_user_session_path, method: :delete
 

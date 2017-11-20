@@ -1,0 +1,47 @@
+= form_for @user do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      %ul
+        - @user.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :email
+    = f.text_field :email  
+  .field
+    = f.label :password
+    = f.text_field :password  
+  = f.fields_for :admin_profile_attributes do |ap|
+    .field
+      = ap.label :name
+      = ap.text_field :name
+    .field
+      = ap.label :mobile_no
+      = ap.text_field :mobile_no
+    .field
+      = ap.radio_button :gender, 'male'
+      = ap.label :male
+    .field
+      = ap.radio_button :gender, 'female'
+      = ap.label :female
+    .field
+      = ap.label :prefer_language
+      = ap.select :prefer_language, [['English','en'],['Bengali','en']]
+    = f.fields_for :designations do |d|
+      .field
+        = d.label :state_id
+        = d.select :state_id, State.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#admin_user_district_id'}
+      .field
+        = d.label :district_id
+        = d.select :district_id, District.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }
+      .field
+        = d.label :subdivision_id
+        = d.select :subdivision_id, Subdivision.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }
+      .field
+        = d.label :block_id
+        = d.select :block_id, Block.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }
+      .field
+        = d.label :role_id
+        = d.select :role_id, Role.all.collect{|p| [p.name, p.id]}
+  .actions
+    = f.submit 'Save'

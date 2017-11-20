@@ -1,0 +1,33 @@
+%h1 Listing certificate_rules
+
+%table
+  %thead
+    %tr
+      %th Jurisdiction
+      %th Certification type
+      %th New application
+      %th Certificate form
+      %th Renew application
+      %th Role
+      %th Validity
+      %th
+      %th
+      %th
+
+  %tbody
+    - @certificate_rules.each do |certificate_rule|
+      %tr
+        %td= certificate_rule.jurisdiction
+        %td= certificate_rule.certification_type
+        %td= certificate_rule.new_application
+        %td= certificate_rule.certificate_form
+        %td= certificate_rule.renew_application
+        %td= certificate_rule.role
+        %td= certificate_rule.validity
+        %td= link_to 'Show', [:admin,certificate_rule]
+        %td= link_to 'Edit', edit_admin_certificate_rule_path(certificate_rule)
+        %td= link_to 'Destroy', [:admin,certificate_rule], method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Certificate rule', new_admin_certificate_rule_path

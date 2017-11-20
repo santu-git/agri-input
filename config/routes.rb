@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :certificate_rules
   namespace :admin do
     get '', to: 'dashboard#index', as: 'root'
     resources :educations
     resources :applicants, only: [:index, :show]
+    resources :users
+    resources :certificate_rules
   end
 
   namespace :applicant do

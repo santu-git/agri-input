@@ -30,7 +30,13 @@
               %li
                 %a{:href => new_applicant_qualification_path} New qualification
           %li
-            %a{:href => applicant_warehouses_path} Storage address
+            / Link with dropdown items
+            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#warehouseSubmenu"} Storage Address
+            %ul#warehouseSubmenu.collapse.list-unstyled
+              %li
+                %a{:href => applicant_warehouses_path} List
+              %li
+                %a{:href => new_applicant_warehouse_path} Create
           %li
             = link_to  "Logout", destroy_applicant_user_session_path, method: :delete
 

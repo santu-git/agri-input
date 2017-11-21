@@ -32,18 +32,24 @@
                   .md-form
                     = p.text_field :mobile_no, class: 'form-control'
                     = p.label :mobile_no, "Mobile"
-                  .md-form2
-                    = p.radio_button :gender, 'male'
-                    = p.label :male
-                  .md-form2
-                    = p.radio_button :gender, 'female'
-                    = p.label :female
+                  %fieldset.form-group
+                    .row
+                      %legend.col-form-legend.col-sm-2 Gender
+                      .col-sm-10
+                        .form-check
+                          %label.form-check-label
+                            = p.radio_button :gender, 'male', id: 'genderMale'
+                            Male
+                        .form-check
+                          %label.form-check-label
+                            = p.radio_button :gender, 'female', id: 'genderFemale'
+                            Female
                   .md-form2
                     = p.label :prefer_language
-                    = p.select :prefer_language, [['English','en'],['Bengali','en']]
+                    = p.select :prefer_language, [['English','en'],['Bengali','en']], {} ,class: 'form-control'
                   .md-form2
                     = p.label :id_card_type, 'ID Card type'
-                    = p.select :id_card_type, [['Voter Card','voter_card'],['PAN Card','pan_card']]
+                    = p.select :id_card_type, [['Voter Card','voter_card'],['PAN Card','pan_card']], {} ,class: 'form-control'
                   %br
                   .md-form
                     = p.text_field :id_card_number, class: 'form-control'
@@ -75,15 +81,15 @@
                   .md-form
                     = ca.text_field :pin_code, class: 'form-control'
                     = ca.label :pin_code
-                  .md-form2
+                  .field
                     = ca.label :state_id
-                    = ca.select :state_id, State.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#warehouse_district_id'}
-                  .md-form2
+                    = ca.select :state_id, State.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#warehouse_district_id'}, class: 'form-control'
+                  .field
                     = ca.label :district_id
-                    = ca.select :district_id, District.all.collect{|p| [p.name['en'], p.id]}, {prompt: 'Select district'}
-                  .md-form2
+                    = ca.select :district_id, District.all.collect{|p| [p.name['en'], p.id]}, {prompt: 'Select district'}, class: 'form-control'
+                  .mfield
                     = ca.label :extended_type, "Address Type"
-                    = ca.select :extended_type, [['Urban','urban'],['Rural', 'rural']], {prompt: 'Select Address type'}
+                    = ca.select :extended_type, [['Urban','urban'],['Rural', 'rural']], {prompt: 'Select Address type'}, class: 'form-control'
                   -# #extended-form
                   %br
                   #extended_urban_from.dn

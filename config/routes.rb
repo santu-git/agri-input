@@ -23,6 +23,10 @@ Rails.application.routes.draw do
     resources :subdivisions, only: [:index], defaults: { format: 'json' }
   end
 
+  resources :subdivisions do
+    resources :blocks, only: [:index], defaults: { format: 'json' }
+  end
+
   
 
   devise_for :applicant_users, path: 'applicants', controllers: {

@@ -1,9 +1,9 @@
-.md-form
-  = form_object.text_field "extended_data[:block_id]", class: 'form-control'
+.md-form2
   = form_object.label :extended_data, "Block"
-.md-form
-  = form_object.text_field "extended_data[:mouza_id]", class: 'form-control'
+  = form_object.select "extended_data[:block_id]", [],  { prompt: 'Select' }, id: :sign_up_block_id, data:{ dynamic_selectable_url: block_mouzas_path(':block_id_id'), dynamic_selectable_target: '#sign_up_mouza_id'}
+.md-form2
   = form_object.label :extended_data, "Mouza"
+  = form_object.select "extended_data[:mouza_id]", [],  { prompt: 'Select' }, id: :sign_up_mouza_id
 .md-form
   = form_object.text_field "extended_data[:jl_number]", class: 'form-control'
   = form_object.label :extended_data, "JL number"

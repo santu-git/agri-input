@@ -83,11 +83,14 @@
                     = ca.label :pin_code
                   .field
                     = ca.label :state_id
-                    = ca.select :state_id, State.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#warehouse_district_id'}, class: 'form-control'
+                    = ca.select :state_id, State.all.collect {|p| [ p.name[@language], p.id ] }, { prompt: 'Select' }, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#signup_district_id'}, class: 'form-control'
                   .field
                     = ca.label :district_id
-                    = ca.select :district_id, District.all.collect{|p| [p.name['en'], p.id]}, {prompt: 'Select district'}, class: 'form-control'
-                  .mfield
+                    = ca.select :district_id, [], {prompt: 'Select'}, id: :signup_district_id, data:{ dynamic_selectable_url: district_subdivisions_path(':district_id'), dynamic_selectable_target: '#signup_subdivision_id'}, class: 'form-control'
+                  .field
+                    = ca.label :subdivision_id
+                    = ca.select :subdivision_id, [], {prompt: 'Select'}, id: :signup_subdivision_id, data:{ dynamic_selectable_url: subdivision_blocks_path(':subdivision_id'), dynamic_selectable_target: '#sign_up_block_id'}, class: 'form-control'
+                  .field
                     = ca.label :extended_type, "Address Type"
                     = ca.select :extended_type, [['Urban','urban'],['Rural', 'rural']], {prompt: 'Select Address type'}, class: 'form-control'
                   -# #extended-form

@@ -20,12 +20,12 @@
       %tr
         %td= qualification.resource_type
         %td= qualification.resource_name
-        %td= qualification.education
+        %td= qualification.education.name[@language]
         %td= qualification.passing_institute
         %td= qualification.passing_year
         %td= qualification.certificate_number
         %td= qualification.status
-        %td= qualification.applicant_user
+        %td= qualification.applicant_user.email
         %td= link_to 'Show', [:applicant,qualification]
         %td= link_to 'Edit', edit_applicant_qualification_path(qualification)
         %td= link_to 'Destroy', [:applicant,qualification], method: :delete, data: { confirm: 'Are you sure?' }

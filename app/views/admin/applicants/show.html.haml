@@ -1,53 +1,53 @@
 %p#notice= notice
 %h2 View Applicant User
 %p
-  %strong Name:
-=text_field :name, :name, :value => @applicant.applicant_profile.name, :disabled => true
+  %strong Name: 
+  = @applicant.applicant_profile.name
 %p
   %strong Mobile:
-=text_field :mobile_no, :mobile_no, :value => @applicant.applicant_profile.mobile_no, :disabled => true
+  = @applicant.applicant_profile.mobile_no
 %p
   %strong Email:
-=text_field :email, :email, :value => @applicant.email, :disabled => true
+  = @applicant.email
 %p
   %strong Gender:
-=text_field :gender, :gender, :value => @applicant.applicant_profile.gender, :disabled => true
+  = @applicant.applicant_profile.gender.humanize
 %p
   %strong DOB:
-=text_field :dob, :dob, :value => @applicant.applicant_profile.dob, :disabled => true
+  = @applicant.applicant_profile.dob
 %p
   %strong ID Card:
-=text_field :id_card_type, :id_card_type, :value => @applicant.applicant_profile.id_card_type, :disabled => true
+  = @applicant.applicant_profile.id_card_type
 %p
   %strong ID Card No:
-=text_field :id_card_type, :id_card_number, :value => @applicant.applicant_profile.id_card_number, :disabled => true
+  = @applicant.applicant_profile.id_card_number
 
 %p
   %strong Street:
-=text_field :street_no, :street_no, :value => @applicant.communication_address.street_no, :disabled => true
+  = @applicant.communication_address.street_no
 
 %p
   %strong Police Station:
-=text_field :police_station, :police_station, :value => @applicant.communication_address.police_station, :disabled => true
+  = @applicant.communication_address.police_station
 
 %p
   %strong Post Office:
-=text_field :post_office, :post_office, :value => @applicant.communication_address.post_office, :disabled => true
+  = @applicant.communication_address.post_office
 
 %p
   %strong Pin Code:
-=text_field :pin_code, :pin_code, :value => @applicant.communication_address.pin_code, :disabled => true
+  = @applicant.communication_address.pin_code
 
 %p
   %strong Address Type:
-=text_field :extended_type, :extended_type, :value => @applicant.communication_address.extended_type, :disabled => true
+  = @applicant.communication_address.extended_type
 
 %p
   %strong State:
-=text_field :state, :state, :value => @applicant.communication_address.state.name[@language], :disabled => true
+  = @applicant.communication_address.state.name[@language]
 
 %p
   %strong District:
-=text_field :district, :district, :value => @applicant.communication_address.district.name[@language], :disabled => true
+  = @applicant.communication_address.district.name[@language]
 
 = link_to 'Back', admin_applicants_path

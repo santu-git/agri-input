@@ -11,7 +11,7 @@
   %tbody
     - @educations.each do |education|
       %tr
-        %td= education.name
+        %td= education.name[@language]
         %td= link_to 'Show', [:admin,education]
         %td= link_to 'Edit', edit_admin_education_path(education)
         %td= link_to 'Destroy', [:admin,education], method: :delete, data: { confirm: 'Are you sure?' }

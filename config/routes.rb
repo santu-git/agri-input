@@ -1,18 +1,27 @@
 Rails.application.routes.draw do
 
+  resources :certificate_rules
   namespace :admin do
-    get '', to: 'welcome#index', as: 'root'
+    get '', to: 'dashboard#index', as: 'root'
+    resources :educations
+    resources :applicants, only: [:index, :show]
+    resources :users
+    resources :certificate_rules
   end
 
-  resources :warehouses
-  resources :qualifications
-
+  namespace :applicant do
+    resources :warehouses
+    resources :qualifications
+  end
+  
+  root 'applicant/dashboard#index'
+  
   resources :states do
     resources :districts, except: [:index]
     resources :districts, only: [:index], defaults: { format: 'json' }
   end
 
-  root 'warehouses#index'
+  
 
   devise_for :applicant_users, path: 'applicants', controllers: {
     registrations: 'applicant_users/registrations',

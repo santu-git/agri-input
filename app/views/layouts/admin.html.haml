@@ -17,23 +17,39 @@
         / Sidebar Links
         %ul.list-unstyled.components
           %li.active
-            %a{:href => "#"} Dashboard
-          %li
-            %a{:href => "#"} Applicants
+            %a{:href => admin_root_path} Dashboard
           %li
             / Link with dropdown items
-            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#usersSubmenu"} Users
+            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#usersSubmenu"} User Manager
             %ul#usersSubmenu.collapse.list-unstyled
               %li
-                %a{:href => "#"} All users
+                %a{:href => admin_users_path} List
               %li
-                %a{:href => "#"} Add new
+                %a{:href => new_admin_user_path} Create
           %li
-            %a{:href => "#"} Education
+            / Link with dropdown items
+            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#educationsSubmenu"} Education Manager
+            %ul#educationsSubmenu.collapse.list-unstyled
+              %li
+                %a{:href => new_admin_education_path} Create Education
+              %li
+                %a{:href => admin_educations_path} List Educations
+          %li
+            / Link with dropdown items
+            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#applicantsSubmenu"} Applicant User
+            %ul#applicantsSubmenu.collapse.list-unstyled
+              %li
+                %a{:href => admin_applicants_path} List Applicants
           %li
             %a{:href => "#"} Sales applications
           %li
-            %a{:href => "#"} Role and certificate
+            / Link with dropdown items
+            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#certificateRuleSubmenu"} Role & Certificate
+            %ul#certificateRuleSubmenu.collapse.list-unstyled
+              %li
+                %a{:href => new_admin_certificate_rule_path} Create Role & Certificate
+              %li
+                %a{:href => admin_certificate_rules_path} List Role & Certificate
           %li
             = link_to  "Logout", destroy_admin_user_session_path, method: :delete
 

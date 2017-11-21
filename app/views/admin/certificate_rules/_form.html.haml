@@ -1,0 +1,40 @@
+= form_for [:admin,@certificate_rule] do |f|
+  - if @certificate_rule.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@certificate_rule.errors.count, "error")} prohibited this certificate_rule from being saved:"
+      %ul
+        - @certificate_rule.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :jurisdiction_id
+    = f.select :jurisdiction_id, Jurisdiction.all.collect{|j| [j.name, j.id]}, {prompt: "Select jurisdiction"}
+  .field
+    = f.label :certification_type_id
+    = f.select :certification_type_id, CertificationType.all.collect{|ct| [ct.name, ct.id]}, {prompt: "Select certification type"}
+  .field
+    = f.label :new_application
+    = f.select :new_application, FormMaster.all.collect{|fm| [fm.name,fm.id]},{prompt: "Select Form"}
+  .field
+    = f.label :certificate_form
+    = f.select :certificate_form, FormMaster.all.collect{|fm| [fm.name,fm.id]}, {prompt: "Select Form"}
+  .field
+    = f.label :renew_application
+    = f.select :renew_application, FormMaster.all.collect{|fm| [fm.name,fm.id]}, {prompt: "Select Form"}
+  .field
+    = f.label :role_id
+    = f.select :role_id, Role.all.collect{|r|[r.name,r.id]}, {prompt: "Select role"}
+  .field
+    = f.label :validity
+    = f.text_field :validity
+  .field
+    = f.radio_button:validity_unit, 'y'
+    = f.label :year, "Year(s)"
+  .field
+    = f.radio_button :validity_unit, 'm'
+    = f.label :month, "Month(s)"
+  .field
+    = f.radio_button :validity_unit, 'd'
+    = f.label :day, "Day(s)"
+  .actions
+    = f.submit 'Save'

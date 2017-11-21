@@ -6,10 +6,49 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
-  %body
-    %p.notice= notice
-    %p.alert= alert
-    %h1 Applicant Layout
-    = yield
-    %br
-    = link_to  "Logout", destroy_applicant_user_session_path, method: :delete
+
+  %body.applicant-body
+    .wrapper
+      %nav#sidebar.applicant
+        / Sidebar Header
+        .sidebar-header
+          %h1.header-2
+            =image_tag('logo.png', width: 40)
+            agrisnet
+        / Sidebar Links
+        %ul.list-unstyled.components
+          %li.active
+            %a{:href => root_path} Dashboard
+          %li
+            %a{:href => "#"} Sales applications
+          %li
+            / Link with dropdown items
+            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#usersSubmenu"} Qualification
+            %ul#usersSubmenu.collapse.list-unstyled
+              %li
+                %a{:href => applicant_qualifications_path} List qualification
+              %li
+                %a{:href => new_applicant_qualification_path} New qualification
+          %li
+            / Link with dropdown items
+            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#warehouseSubmenu"} Storage Address
+            %ul#warehouseSubmenu.collapse.list-unstyled
+              %li
+                %a{:href => applicant_warehouses_path} List
+              %li
+                %a{:href => new_applicant_warehouse_path} Create
+          %li
+            = link_to  "Logout", destroy_applicant_user_session_path, method: :delete
+
+      #content
+        -# %button#sidebarCollapse.btn.btn-info.navbar-btn{:type => "button"}
+        -#   %i.glyphicon.glyphicon-align-left
+        -#   Toggle Sidebar
+        = yield
+
+  %footer
+    :javascript
+      $('#sidebarCollapse').on('click', function () {
+          $('#sidebar').toggleClass('active');
+          $('#content').toggleClass('active');
+      });

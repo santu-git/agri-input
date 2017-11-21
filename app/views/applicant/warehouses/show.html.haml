@@ -1,0 +1,34 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @warehouse.name
+%p
+  %strong Owner name:
+  = @warehouse.owner_name
+%p
+  %strong State:
+  = @warehouse.state
+%p
+  %strong District:
+  = @warehouse.district
+%p
+  %strong Post office:
+  = @warehouse.post_office
+%p
+  %strong Police station:
+  = @warehouse.police_station
+%p
+  %strong Pincode:
+  = @warehouse.pincode
+%p
+  %strong Postal address:
+  = @warehouse.postal_address
+%p
+  %strong Applicant user:
+  = @warehouse.applicant_user
+%p
+  %strong Status:
+  = @warehouse.status
+= link_to 'Edit', edit_applicant_warehouse_path(@warehouse)
+|
+= link_to 'Back', applicant_warehouses_path

@@ -9,6 +9,7 @@ class CreateCommunicationAddresses < ActiveRecord::Migration[5.1]
       t.references :applicant_user, foreign_key: true
       t.references :state, foreign_key: true
       t.references :district, foreign_key: true
+      t.references :subdivision, foreign_key: true
       t.string :extended_type
       t.hstore :extended_data
 

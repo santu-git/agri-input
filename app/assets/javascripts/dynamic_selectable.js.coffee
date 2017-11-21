@@ -28,7 +28,7 @@ class DynamicSelectable
     @$targetSelect.trigger("change")
 
   clearTarget: ->
-    @$targetSelect.html('<option></option>')
+    @$targetSelect.html('<option>Select</option>')
 
   constructUrl: (id) ->
     if id && id != ''

@@ -7,10 +7,10 @@
   = @warehouse.owner_name
 %p
   %strong State:
-  = @warehouse.state
+  = @warehouse.state.name[@language]
 %p
   %strong District:
-  = @warehouse.district
+  = @warehouse.district.name[@language]
 %p
   %strong Post office:
   = @warehouse.post_office
@@ -25,7 +25,7 @@
   = @warehouse.postal_address
 %p
   %strong Applicant user:
-  = @warehouse.applicant_user
+  = @warehouse.applicant_user.email
 %p
   %strong Status:
   = @warehouse.status

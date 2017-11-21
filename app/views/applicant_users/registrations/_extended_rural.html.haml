@@ -1,18 +1,18 @@
-.field
+.md-form2
   = form_object.label :extended_data, "Block"
   = form_object.select "extended_data[:block_id]", [],  { prompt: 'Select' }, id: :sign_up_block_id, data:{ dynamic_selectable_url: block_mouzas_path(':block_id_id'), dynamic_selectable_target: '#sign_up_mouza_id'}
-.field
+.md-form2
   = form_object.label :extended_data, "Mouza"
   = form_object.select "extended_data[:mouza_id]", [],  { prompt: 'Select' }, id: :sign_up_mouza_id
-.field
-  = form_object.label :extended_data, "Mouza"
-  = form_object.text_field "extended_data[:jl_number]"
-.field
+.md-form
+  = form_object.text_field "extended_data[:jl_number]", class: 'form-control'
+  = form_object.label :extended_data, "JL number"
+.md-form
+  = form_object.text_field "extended_data[:village]", class: 'form-control'
   = form_object.label :extended_data, "Village"
-  = form_object.text_field "extended_data[:village]"
-.field
+.md-form
+  = form_object.text_field "extended_data[:dag_no]", class: 'form-control'
   = form_object.label :extended_data, "Dag No"
-  = form_object.text_field "extended_data[:dag_no]"
-.field
+.md-form
+  = form_object.text_field "extended_data[:khatian_no]", class: 'form-control'
   = form_object.label :extended_data, "Khatian No"
-  = form_object.text_field "extended_data[:khatian_no]"

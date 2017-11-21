@@ -1,79 +1,98 @@
-%h2 Sign up
-= form_for resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true } do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    = f.email_field :email, autofocus: true
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  .field
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation, autocomplete: "off"
+.signup-container
+  .content
+    .container
+      .row.justify-content-md-center
+        .col.col-lg-6.mt100
+          %h1.header-1
+            =image_tag('logo.png', width: 60)
+            sign up
+          .card.type-1.mb30
+            .card-body
 
-  = f.fields_for :applicant_profile_attributes do |p|
-    .field
-      = p.label :name, "Full Name"
-      = p.text_field :name
-    .field
-      = p.label :mobile_no, "Mobile"
-      = p.text_field :mobile_no
-    .field
-      = p.radio_button :gender, 'male'
-      = p.label :male
-    .field
-      = p.radio_button :gender, 'female'
-      = p.label :female
-    .field
-      = p.label :prefer_language
-      = p.select :prefer_language, [['English','en'],['Bengali','en']]
-    .field
-      = p.label :id_card_type, 'ID Card type'
-      = p.select :id_card_type, [['Voter Card','voter_card'],['PAN Card','pan_card']]
-    .field
-      = p.label :id_card_number, 'ID Card number'
-      = p.text_field :id_card_number
-    .field
-      = p.label :id_card_image, "ID Card image"
-      = p.file_field :id_card_image
-    .field
-      = p.label :dob
-      = p.date_field :dob
-  = f.fields_for :communication_address_attributes do |ca|
-    .field
-      = ca.label :street_no
-      = ca.text_field :street_no
-    .field
-      = ca.label :post_office
-      = ca.text_field :post_office
-    .field
-      = ca.label :police_station
-      = ca.text_field :police_station
-    .field
-      = ca.label :pin_code
-      = ca.text_field :pin_code
-    .field
-      = ca.label :state_id
-      = ca.select :state_id, State.all.collect {|p| [ p.name[@language], p.id ] }, { prompt: 'Select' }, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#signup_district_id'}
-    .field
-      = ca.label :district_id
-      = ca.select :district_id, [], {prompt: 'Select'}, id: :signup_district_id, data:{ dynamic_selectable_url: district_subdivisions_path(':district_id'), dynamic_selectable_target: '#signup_subdivision_id'}
-    .field
-      = ca.label :subdivision_id
-      = ca.select :subdivision_id, [], {prompt: 'Select'}, id: :signup_subdivision_id, data:{ dynamic_selectable_url: subdivision_blocks_path(':subdivision_id'), dynamic_selectable_target: '#sign_up_block_id'}
-    .field
-      = ca.label :extended_type, "Address Type"
-      = ca.select :extended_type, [['Urban','urban'],['Rural', 'rural']], {prompt: 'Select Address type'}
-    -# #extended-form
+              = form_for resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true } do |f|
+                = devise_error_messages!
+                .md-form
+                  = f.email_field :email, autofocus: true, class: 'form-control'
+                  = f.label :email
+                .md-form
+                  = f.password_field :password, autocomplete: "off", class: 'form-control'
+                  = f.label :password
+                  - if @minimum_password_length
+                    %em
+                      (#{@minimum_password_length} characters minimum)
+                  %br/
+                .md-form
+                  = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+                  = f.label :password_confirmation
 
-    #extended_urban_from.dn
-      = render 'extended_urban', form_object: ca
-    #extended_rural_from.dn
-      = render 'extended_rural', form_object: ca
-  .actions
-    = f.submit "Sign up"
-= render "applicant_users/shared/links"
+                = f.fields_for :applicant_profile_attributes do |p|
+                  .md-form
+                    = p.text_field :name, class: 'form-control'
+                    = p.label :name, "Full Name"
+                  .md-form
+                    = p.text_field :mobile_no, class: 'form-control'
+                    = p.label :mobile_no, "Mobile"
+                  .md-form2
+                    = p.radio_button :gender, 'male'
+                    = p.label :male
+                  .md-form2
+                    = p.radio_button :gender, 'female'
+                    = p.label :female
+                  .md-form2
+                    = p.label :prefer_language
+                    = p.select :prefer_language, [['English','en'],['Bengali','en']]
+                  .md-form2
+                    = p.label :id_card_type, 'ID Card type'
+                    = p.select :id_card_type, [['Voter Card','voter_card'],['PAN Card','pan_card']]
+                  %br
+                  .md-form
+                    = p.text_field :id_card_number, class: 'form-control'
+                    = p.label :id_card_number, 'ID Card number'
+                  -# .file-field
+                  -#   .btn.btn-primary.btn-sm.waves-effect.waves-light
+                  -#     %span Choose file
+                  -#     %input{:type => "file"}/
+                  -#   .file-path-wrapper
+                  -#     %input.file-path.validate{:placeholder => "Upload your file", :type => "text"}/
+
+                  .md-form
+                    = p.label :id_card_image, "ID Card image"
+                    %br
+                    = p.file_field :id_card_image, class: 'form-control'
+                  .md-form
+                    = p.date_field :dob, class: 'form-control'
+                    = p.label :dob, 'Date of birth'
+                = f.fields_for :communication_address_attributes do |ca|
+                  .md-form
+                    = ca.text_field :street_no, class: 'form-control'
+                    = ca.label :street_no
+                  .md-form
+                    = ca.text_field :post_office, class: 'form-control'
+                    = ca.label :post_office
+                  .md-form
+                    = ca.text_field :police_station, class: 'form-control'
+                    = ca.label :police_station
+                  .md-form
+                    = ca.text_field :pin_code, class: 'form-control'
+                    = ca.label :pin_code
+                  .md-form2
+                    = ca.label :state_id
+                    = ca.select :state_id, State.all.collect {|p| [ p.name[@language], p.id ] }, { prompt: 'Select' }, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#signup_district_id'}
+                  .md-form2
+                    = ca.label :district_id
+                    = ca.select :district_id, [], {prompt: 'Select'}, id: :signup_district_id, data:{ dynamic_selectable_url: district_subdivisions_path(':district_id'), dynamic_selectable_target: '#signup_subdivision_id'}
+                  .md-form2
+                    = ca.label :subdivision_id
+                    = ca.select :subdivision_id, [], {prompt: 'Select'}, id: :signup_subdivision_id, data:{ dynamic_selectable_url: subdivision_blocks_path(':subdivision_id'), dynamic_selectable_target: '#sign_up_block_id'}
+                  .md-form2
+                    = ca.label :extended_type, "Address Type"
+                    = ca.select :extended_type, [['Urban','urban'],['Rural', 'rural']], {prompt: 'Select Address type'}
+                  -# #extended-form
+                  %br
+                  #extended_urban_from.dn
+                    = render 'extended_urban', form_object: ca
+                  #extended_rural_from.dn
+                    = render 'extended_rural', form_object: ca
+                .actions
+                  = f.submit "Sign up", class: 'btn btn-primary right'
+            =# render "applicant_users/shared/links"

@@ -3,28 +3,28 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#   movies = Movie.create!([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+#   Character.create!(name: 'Luke', movie: movies.first)
 
 
 puts "Creating State ......"
-s = State.create(name: {en: "West Bengal", bn: "পশ্চিমবঙ্গ"})
+s = State.create!(name: {en: "West Bengal", bn: "পশ্চিমবঙ্গ"})
 
 puts "Creating District, Blocks, Subdivision, Mouza ......"
 1.upto(3) do |di|
-  d = District.create(name: {en: "District-#{di}", bn: "জেলা-#{di}"}, state: s)
+  d = District.create!(name: {en: "District-#{di}", bn: "জেলা-#{di}"}, state: s)
   1.upto(3)do |sdi|
-    sd = Subdivision.create(name: {en: "Subdivision-#{sdi}(DST-#{d.id})",  bn: "মহকুমা-#{sdi}(DST-#{d.id})"}, district: d)
+    sd = Subdivision.create!(name: {en: "Subdivision-#{sdi}(DST-#{d.id})",  bn: "মহকুমা-#{sdi}(DST-#{d.id})"}, district: d)
     1.upto(3) do |bi|
-      b = Block.create(name: {en: "Block-#{bi}(SUB-#{sd.id})", bn: "ব্লক-#{bi}(SUB-#{sd.id}))"}, subdivision: sd)
+      b = Block.create!(name: {en: "Block-#{bi}(SUB-#{sd.id})", bn: "ব্লক-#{bi}(SUB-#{sd.id}))"}, subdivision: sd)
       1.upto(3) do |mi|
-        m = Mouza.create(name: {en: "Mouza-#{mi}(B-#{b.id})", bn: "মৌজা-#{mi}(B-#{b.id})"}, block: b)
+        m = Mouza.create!(name: {en: "Mouza-#{mi}(B-#{b.id})", bn: "মৌজা-#{mi}(B-#{b.id})"}, block: b)
       end
     end
   end
 end
 puts "Creating Roles...."
-Role.create([
+Role.create!([
   {name: "ADA(Admin)(BLOCK)"},
   {name: "ADA(Admin)(SUB-DIVISION)"},
   {name: "DDA(Admin)(DISTRICT)"},
@@ -33,7 +33,7 @@ Role.create([
 ])
 
 puts "Creating Educations ........."
-Education.create([
+Education.create!([
   {name: {en: "B.Tech", bn: "বি.টেক"}},
   {name: {en: "B.Sc", bn: "বি.এসসি"}},
   {name: {en: "B.COM", bn: "বি.কম"}},
@@ -47,7 +47,7 @@ block = subdiv.blocks.first
 mouza = block.mouzas.first
 
 
-applicant = ApplicantUser.create({
+applicant = ApplicantUser.create!({
   email: "applicant@gmail.com",
   password: '12345678',
   applicant_profile_attributes:{
@@ -57,6 +57,7 @@ applicant = ApplicantUser.create({
     prefer_language: 'en',
     id_card_type: 'voter_card',
     id_card_number: "ID12345",
+    id_card_image: Faker::Avatar.image,
     dob: '09-07-1987',
   },
   communication_address_attributes:{
@@ -80,7 +81,7 @@ applicant = ApplicantUser.create({
 puts "Creating Warehouses ........"
 
 20.times do 
-  Warehouse.create({
+  Warehouse.create!({
     name: Faker::Company.name,
     owner_name: Faker::Name.name,
     state: s,
@@ -89,14 +90,15 @@ puts "Creating Warehouses ........"
     police_station: Faker::Address.street_name,
     pincode: Faker::Address.zip,
     postal_address: Faker::Lorem.paragraph,
-    applicant_user: applicant
+    applicant_user: applicant,
+    status: 'active'
   })
 end
 
 puts "Creating Qualification ............."
 
 5.times do 
-  Qualification.create({
+  Qualification.create!({
     resource_type: 'others',
     resource_name: Faker::Name.name,
     education_id: Faker::Number.between(1,3),
@@ -111,7 +113,7 @@ end
 
 puts "Creating Admin User ......"
 
-AdminUser.create({
+AdminUser.create!({
   email: "admin@gmail.com",
   password: "12345678",
   admin_profile_attributes: {
@@ -130,18 +132,21 @@ AdminUser.create({
   ]
 })
 
-Jurisdiction.create([
-  {name: 'State'},
-  {name: 'District'},
-  {name: 'Subdivision'}
+Jurisdiction.create!([
+  {name: {en:'State', bn: 'রাজ্য'}},
+  {name: {en:'District', bn:'জেলা'}},
+  {name: {en:'Subdivision',bn:'মহকুমা'}}
 ])
+# Jurisdiction.create!(name: {en: "State", bn: "রাজ্য"})
+# Jurisdiction.create!(name: {en: "District", bn: "জেলা"})
+# Jurisdiction.create!(name: {en: "Subdivision", bn: "মহকুমা"})
 
-CertificationType.create([
+CertificationType.create!([
   {name: 'Wholesalers Marketing Certificate'},
   {name: 'Retailers Marketing Certificate'},
 ])
 
-FormMaster.create([
+FormMaster.create!([
   {name: 'Form A1'},
   {name: 'Form A2'}
 ])

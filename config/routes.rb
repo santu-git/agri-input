@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   namespace :applicant do
     resources :warehouses
     resources :qualifications
+    resources :applications
+    resources :form_a1s
   end
   
   root 'applicant/dashboard#index'

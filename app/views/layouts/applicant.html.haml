@@ -20,7 +20,13 @@
           %li.active
             %a{:href => root_path} Dashboard
           %li
-            %a{:href => "#"} Sales applications
+            / Link with dropdown items
+            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#warehouseSubmenu"} Sales Application
+            %ul#warehouseSubmenu.collapse.list-unstyled
+              %li
+                %a{:href => "#"} List
+              %li
+                %a{:href => new_applicant_application_path} Create
           %li
             / Link with dropdown items
             %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#usersSubmenu"} Qualification

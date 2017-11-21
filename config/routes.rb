@@ -17,10 +17,19 @@ Rails.application.routes.draw do
   root 'applicant/dashboard#index'
   
   resources :states do
-    resources :districts, except: [:index]
     resources :districts, only: [:index], defaults: { format: 'json' }
   end
+  resources :districts do
+    resources :subdivisions, only: [:index], defaults: { format: 'json' }
+  end
 
+  resources :subdivisions do
+    resources :blocks, only: [:index], defaults: { format: 'json' }
+  end
+
+  resources :blocks do
+    resources :mouzas, only: [:index], defaults: { format: 'json' }
+  end
   
 
   devise_for :applicant_users, path: 'applicants', controllers: {

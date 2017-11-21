@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     resources :blocks, only: [:index], defaults: { format: 'json' }
   end
 
+  resources :blocks do
+    resources :mouzas, only: [:index], defaults: { format: 'json' }
+  end
   
 
   devise_for :applicant_users, path: 'applicants', controllers: {

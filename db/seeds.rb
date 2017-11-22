@@ -150,3 +150,14 @@ FormMaster.create!([
   {name: 'Form A1'},
   {name: 'Form A2'}
 ])
+
+CertificateRule.create!({
+  jurisdiction_id: 1, 
+  certification_type_id: 1,
+  new_application: 1, 
+  certificate_form: 2,
+  renew_application: 1,
+  role_id: 1, 
+  validity: 2, 
+  validity_unit: "y"
+})

@@ -6,6 +6,7 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
+    %link{:href => "https://fonts.googleapis.com/icon?family=Material+Icons", :rel => "stylesheet"}/
 
   %body.applicant-body
     .wrapper
@@ -17,34 +18,50 @@
             agrisnet
         / Sidebar Links
         %ul.list-unstyled.components
-          %li.active
-            %a{:href => root_path} Dashboard
-          %li
+          %li{class: current_class?([root_path]) ? 'active' : ''}
+            %a{:href => root_path}
+              %i.material-icons timeline
+              Dashboard
+
+          %li{class: current_controller?('applicant/applications', params[:controller]) ? 'active' : ''}
             / Link with dropdown items
-            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#warehouseSubmenu"} Sales Application
-            %ul#warehouseSubmenu.collapse.list-unstyled
-              %li
-                %a{:href => "#"} List
-              %li
-                %a{:href => new_applicant_application_path} New Application
-          %li
+            %a{"aria-expanded" => current_controller?('applicant/applications', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#salesSubmenu"}
+              %i.material-icons collections_bookmark
+              Sales Application
+              %i.material-icons.right more_horiz
+            %ul#salesSubmenu.collapse.list-unstyled{class: current_controller?('applicant/applications', params[:controller]) ? 'show' : ''}
+              %li{class: current_class?([applicant_applications_path]) ? 'active' : ''}
+                %a{:href => applicant_applications_path} All applications
+              %li{class: current_class?([new_applicant_application_path]) ? 'active' : ''}
+                %a{:href => new_applicant_application_path} New application
+
+          %li{class: current_controller?('applicant/qualifications', params[:controller]) ? 'active' : ''}
             / Link with dropdown items
-            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#usersSubmenu"} Qualification
-            %ul#usersSubmenu.collapse.list-unstyled
-              %li
-                %a{:href => applicant_qualifications_path} List qualification
-              %li
+            %a{"aria-expanded" => current_controller?('applicant/qualifications', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#usersSubmenu"}
+              %i.material-icons school
+              Qualification
+              %i.material-icons.right more_horiz
+            %ul#usersSubmenu.collapse.list-unstyled{class: current_controller?('applicant/qualifications', params[:controller]) ? 'show' : ''}
+              %li{class: current_class?([applicant_qualifications_path]) ? 'active' : ''}
+                %a{:href => applicant_qualifications_path} All qualifications
+              %li{class: current_class?([new_applicant_qualification_path]) ? 'active' : ''}
                 %a{:href => new_applicant_qualification_path} New qualification
-          %li
+          %li{class: current_controller?('applicant/warehouses', params[:controller]) ? 'active' : ''}
             / Link with dropdown items
-            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#warehouseSubmenu"} Storage Address
-            %ul#warehouseSubmenu.collapse.list-unstyled
-              %li
-                %a{:href => applicant_warehouses_path} List
-              %li
-                %a{:href => new_applicant_warehouse_path} Create
+            %a{"aria-expanded" => current_controller?('applicant/warehouses', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#warehouseSubmenu"}
+              %i.material-icons store
+              Storage Address
+              %i.material-icons.right more_horiz
+            %ul#warehouseSubmenu.collapse.list-unstyled{class: current_controller?('applicant/warehouses', params[:controller]) ? 'show' : ''}
+              %li{class: current_class?([applicant_warehouses_path]) ? 'active' : ''}
+                %a{:href => applicant_warehouses_path} All warehouses
+              %li{class: current_class?([new_applicant_warehouse_path]) ? 'active' : ''}
+                %a{:href => new_applicant_warehouse_path} New warehouse
           %li
-            = link_to  "Logout", destroy_applicant_user_session_path, method: :delete
+            %a{href: destroy_applicant_user_session_path, "data-method" => 'delete'}
+              Logout
+              %i.material-icons power_settings_new
+            =# link_to  "Logout", destroy_applicant_user_session_path, method: :delete
 
       #content
         -# %button#sidebarCollapse.btn.btn-info.navbar-btn{:type => "button"}

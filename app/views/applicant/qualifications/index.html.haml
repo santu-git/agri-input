@@ -1,35 +1,30 @@
-%h1 Listing qualifications
-
-%table
-  %thead
-    %tr
-      %th Resource type
-      %th Resource name
-      %th Education
-      %th Passing institute
-      %th Passing year
-      %th Certificate number
-      %th Status
-      %th Applicant user
-      %th
-      %th
-      %th
-
-  %tbody
-    - @qualifications.each do |qualification|
+.card.table-card
+  %table.table
+    %thead
       %tr
-        %td= qualification.resource_type
-        %td= qualification.resource_name
-        %td= qualification.education.name[@language]
-        %td= qualification.passing_institute
-        %td= qualification.passing_year
-        %td= qualification.certificate_number
-        %td= qualification.status
-        %td= qualification.applicant_user.email
-        %td= link_to 'Show', [:applicant,qualification]
-        %td= link_to 'Edit', edit_applicant_qualification_path(qualification)
-        %td= link_to 'Destroy', [:applicant,qualification], method: :delete, data: { confirm: 'Are you sure?' }
+        %th Resource type
+        %th Resource name
+        %th Education
+        %th Passing institute
+        %th Passing year
+        %th Certificate number
+        %th Status
+        %th Applicant user
+        %th
+        %th
+        %th
 
-%br
-
-= link_to 'New Qualification', new_applicant_qualification_path
+    %tbody
+      - @qualifications.each do |qualification|
+        %tr
+          %td= qualification.resource_type
+          %td= qualification.resource_name
+          %td= qualification.education.name[@language]
+          %td= qualification.passing_institute
+          %td= qualification.passing_year
+          %td= qualification.certificate_number
+          %td= qualification.status
+          %td= qualification.applicant_user.email
+          %td= link_to 'Show', [:applicant,qualification]
+          %td= link_to 'Edit', edit_applicant_qualification_path(qualification)
+          %td= link_to 'Destroy', [:applicant,qualification], method: :delete, data: { confirm: 'Are you sure?' }

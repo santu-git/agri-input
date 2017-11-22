@@ -118,7 +118,6 @@ ActiveRecord::Schema.define(version: 20171121130326) do
     t.bigint "applicant_user_id"
     t.bigint "state_id"
     t.bigint "district_id"
-    t.bigint "subdivision_id"
     t.string "extended_type"
     t.hstore "extended_data"
     t.datetime "created_at", null: false
@@ -126,7 +125,6 @@ ActiveRecord::Schema.define(version: 20171121130326) do
     t.index ["applicant_user_id"], name: "index_communication_addresses_on_applicant_user_id"
     t.index ["district_id"], name: "index_communication_addresses_on_district_id"
     t.index ["state_id"], name: "index_communication_addresses_on_state_id"
-    t.index ["subdivision_id"], name: "index_communication_addresses_on_subdivision_id"
   end
 
   create_table "designations", force: :cascade do |t|
@@ -211,7 +209,7 @@ ActiveRecord::Schema.define(version: 20171121130326) do
   end
 
   create_table "jurisdictions", force: :cascade do |t|
-    t.hstore "name"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -291,7 +289,6 @@ ActiveRecord::Schema.define(version: 20171121130326) do
   add_foreign_key "communication_addresses", "applicant_users"
   add_foreign_key "communication_addresses", "districts"
   add_foreign_key "communication_addresses", "states"
-  add_foreign_key "communication_addresses", "subdivisions"
   add_foreign_key "designations", "admin_users"
   add_foreign_key "designations", "blocks"
   add_foreign_key "designations", "districts"

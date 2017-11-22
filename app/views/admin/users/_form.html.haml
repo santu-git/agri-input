@@ -33,13 +33,13 @@
         = d.select :state_id, State.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#admin_user_district_id'}
       .field
         = d.label :district_id
-        = d.select :district_id, District.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }
+        = d.select :district_id,[], {prompt: 'Select State'}, id: :admin_user_district_id, data:{ dynamic_selectable_url: district_subdivisions_path(':district_id'), dynamic_selectable_target: '#admin_user_subdivision_id'}
       .field
         = d.label :subdivision_id
-        = d.select :subdivision_id, Subdivision.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }
+        = d.select :subdivision_id,[], { prompt: 'Select state' }, id: :admin_user_subdivision_id, data:{ dynamic_selectable_url: subdivision_blocks_path(':subdivision_id'), dynamic_selectable_target: '#admin_user_block_id'}
       .field
         = d.label :block_id
-        = d.select :block_id, Block.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }
+        = d.select :block_id,[], { prompt: 'Select state' }, id: :admin_user_block_id, data:{ dynamic_selectable_url: block_mouzas_path(':block_id'), dynamic_selectable_target: '#admin_user_mouza_id'}
       .field
         = d.label :role_id
         = d.select :role_id, Role.all.collect{|p| [p.name, p.id]}

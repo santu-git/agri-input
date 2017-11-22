@@ -1,5 +1,29 @@
 %p#notice= notice
 
+%h2 View Applicant User
+%p
+  %strong Name
+  = @user.admin_profile.name
+%p
+  %strong Mobile
+  = @user.admin_profile.mobile_no
+%p
+  %strong Email
+  = @user.email
+%p
+  %strong Gender
+  = @user.admin_profile.gender
+- @user.designations.each do |desg|
+  %p
+    %strong State
+    = desg.state.name[@language]
+  %p
+    %strong District
+    = desg.district.name[@language]
+
+
+
+
 
 = link_to 'Edit', edit_admin_user_path(@user)
 \|

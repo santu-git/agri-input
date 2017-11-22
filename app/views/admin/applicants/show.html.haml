@@ -1,3 +1,53 @@
 %p#notice= notice
+%h2 View Applicant User
+%p
+  %strong Name: 
+  = @applicant.applicant_profile.name
+%p
+  %strong Mobile:
+  = @applicant.applicant_profile.mobile_no
+%p
+  %strong Email:
+  = @applicant.email
+%p
+  %strong Gender:
+  = @applicant.applicant_profile.gender.humanize
+%p
+  %strong DOB:
+  = @applicant.applicant_profile.dob
+%p
+  %strong ID Card:
+  = @applicant.applicant_profile.id_card_type
+%p
+  %strong ID Card No:
+  = @applicant.applicant_profile.id_card_number
 
-= link_to 'Back', admin_applicant_path
+%p
+  %strong Street:
+  = @applicant.communication_address.street_no
+
+%p
+  %strong Police Station:
+  = @applicant.communication_address.police_station
+
+%p
+  %strong Post Office:
+  = @applicant.communication_address.post_office
+
+%p
+  %strong Pin Code:
+  = @applicant.communication_address.pin_code
+
+%p
+  %strong Address Type:
+  = @applicant.communication_address.extended_type
+
+%p
+  %strong State:
+  = @applicant.communication_address.state.name[@language]
+
+%p
+  %strong District:
+  = @applicant.communication_address.district.name[@language]
+
+= link_to 'Back', admin_applicants_path

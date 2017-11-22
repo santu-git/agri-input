@@ -1,0 +1,85 @@
+= form_for [:applicant,@form_a1] do |f|
+  - if @form_a1.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@form_a1.errors.count, "error")} prohibited this form_a1 from being saved:"
+      %ul
+        - @form_a1.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :role
+    = f.text_field :role
+  .field
+    = f.label :place
+    = f.text_field :place
+  .field
+    = f.label :state
+    = f.text_field :state
+  .field
+    = f.label :applicant_name
+    = f.text_field :applicant_name
+  .field
+    = f.label :concern_name
+    = f.text_field :concern_name
+  .field
+    = f.label :postal_address
+    = f.text_area :postal_address
+  .field
+    = f.label :district
+    = f.text_field :district
+  .field
+    = f.label :subdivision
+    = f.text_field :subdivision
+  .field
+    = f.label :extended_address_type
+    = f.text_field :extended_address_type
+  .field
+    = f.label :extended_address
+    = f.text_field :extended_address
+  .field
+    = f.label :certificate_type
+    = f.text_field :certificate_type
+  .field
+    = f.label :jurisdiction
+    = f.text_field :jurisdiction
+  .field
+    = f.label :registration_fees
+    = f.text_field :registration_fees
+  .field
+    = f.label :challan_no
+    = f.text_field :challan_no
+  .field
+    = f.label :challan_submission_date
+    = f.date_select :challan_submission_date
+  .field
+    = f.label :bank_name
+    = f.text_field :bank_name
+  .field
+    = f.label :enclose_dd_no
+    = f.text_field :enclose_dd_no
+  .field
+    = f.label :enclose_dd_date
+    = f.date_select :enclose_dd_date
+  .field
+    = f.label :payment_for
+    = f.text_field :payment_for
+  .field
+    = f.label :payment_drawn_on
+    = f.text_field :payment_drawn_on
+  .field
+    = f.label :payment_in_favour_of
+    = f.text_field :payment_in_favour_of
+  .field
+    = f.label :payable_at
+    = f.text_field :payable_at
+  .field
+    = f.label :terms_condition
+    = f.check_box :terms_condition
+  .field
+    = f.label :declaration
+    = f.check_box :declaration
+  .field
+    = f.label :applicant_user
+    = f.text_field :applicant_user
+  .actions
+    = f.submit 'Save'

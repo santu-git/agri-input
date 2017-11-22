@@ -28,8 +28,8 @@
     = f.label :status
     = f.select :status , [['Active', 'active'],['Inactive','inactive']]
   .field
-    = f.label :cretificate_image
-    = f.file_field :cretificate_image
+    = f.label :certificate_image
+    = f.file_field :certificate_image
   = f.hidden_field :applicant_user_id, id: :qualification_applicant_user_id, value: current_applicant_user.id
 
   .actions

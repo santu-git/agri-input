@@ -2,7 +2,7 @@
 
 %p
   %b Name:
-  = @education.name
+  = @education.name[@language]
 
 = link_to 'Edit', edit_admin_education_path(@education)
 \|

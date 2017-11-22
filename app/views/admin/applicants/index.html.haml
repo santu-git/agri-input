@@ -1,17 +1,25 @@
 %h1 Listing applicants
 
-%table
+%table{:border => 1, :width => "100%"}
   %thead
     %tr
       %th ID
+      %th Name
       %th Email
+      %th Phone no.
+      %th District Name
+      %th Address Type
       %th Action
 
   %tbody
     - @applicants.each do |applicant|
       %tr
         %td= applicant.id
+        %td= applicant.applicant_profile.name
         %td= applicant.email
+        %td= applicant.applicant_profile.mobile_no
+        %td= applicant.communication_address.district.name[@language]
+        %td= applicant.communication_address.extended_type
         %td= link_to 'Show', admin_applicant_path(applicant)
   /= paginate @applicants 
 %br

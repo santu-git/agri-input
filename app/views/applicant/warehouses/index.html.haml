@@ -19,13 +19,13 @@
       %tr
         %td= warehouse.name
         %td= warehouse.owner_name
-        %td= warehouse.state.name
-        %td= warehouse.district
+        %td= warehouse.state.name[@language]
+        %td= warehouse.district.name[@language]
         %td= warehouse.post_office
         %td= warehouse.police_station
         %td= warehouse.pincode
         %td= warehouse.postal_address
-        %td= warehouse.applicant_user
+        %td= warehouse.applicant_user.email
         %td= warehouse.status
         %td= link_to 'Show', applicant_warehouse_path(warehouse)
         %td= link_to 'Edit', edit_applicant_warehouse_path(warehouse)

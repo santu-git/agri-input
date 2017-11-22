@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_language
-    @language = params[:lng] || 'en'
+    @language =  'en' 
+    @language = current_applicant_user.applicant_profile.prefer_language || 'en' if current_applicant_user
   end
 end

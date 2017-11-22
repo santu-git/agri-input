@@ -57,13 +57,37 @@
                 %a{:href => applicant_warehouses_path} All warehouses
               %li{class: current_class?([new_applicant_warehouse_path]) ? 'active' : ''}
                 %a{:href => new_applicant_warehouse_path} New warehouse
-          %li
-            %a{href: destroy_applicant_user_session_path, "data-method" => 'delete'}
-              Logout
-              %i.material-icons power_settings_new
-            =# link_to  "Logout", destroy_applicant_user_session_path, method: :delete
 
       #content
+        %nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top#static-top-navbar
+          %a.navbar-brand{:href => "#"}=params[:controller].split('/').last.humanize
+          %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+            %span.navbar-toggler-icon
+          #navbarSupportedContent.collapse.navbar-collapse
+            -# %ul.navbar-nav.mr-auto
+            -#   %li.nav-item.active
+            -#     %a.nav-link{:href => "#"}
+            -#       Home
+            -#       %span.sr-only (current)
+            -#   %li.nav-item
+            -#     %a.nav-link{:href => "#"} Link
+            -#   %li.nav-item
+            -#     %a.nav-link.disabled{:href => "#"} Disabled
+            %ul.navbar-nav.ml-auto
+              %li.nav-item
+                %a.nav-link.nav-icon-link.blue{:href => "#"}
+                  %i.material-icons notifications
+              %li.nav-item.dropdown
+                %a#navbarDropdown.nav-link.dropdown-toggle.nav-icon-link.light-grey{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
+                  %i.material-icons person
+                .dropdown-menu.dropdown-menu-right.dropdown-secondary{"aria-labelledby" => "navbarDropdown", style: "position: absolute;"}
+                  %a.dropdown-item{:href => "#"} Profile
+                  %a.dropdown-item{:href => "#"} Change Password
+                  .dropdown-divider
+                  = link_to  "Logout", destroy_applicant_user_session_path, method: :delete, class: 'dropdown-item'
+              -# %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
+              -# %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
+
         -# %button#sidebarCollapse.btn.btn-info.navbar-btn{:type => "button"}
         -#   %i.glyphicon.glyphicon-align-left
         -#   Toggle Sidebar
@@ -74,4 +98,5 @@
       $('#sidebarCollapse').on('click', function () {
           $('#sidebar').toggleClass('active');
           $('#content').toggleClass('active');
+          $('#static-top-navbar').toggleClass('active');
       });

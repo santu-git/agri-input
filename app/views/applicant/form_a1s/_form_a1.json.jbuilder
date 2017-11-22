@@ -1,0 +1,2 @@
+json.extract! form_a1, :id, :role_id, :place_id, :place_type, :state_id, :applicant_name, :concern_name, :postal_address, :district_id, :subdivision_id, :extended_address_type, :extended_address, :certificate_type_id, :jurisdiction_id, :registration_fees, :challan_no, :challan_submission_date, :bank_name, :enclose_dd_no, :enclose_dd_date, :payment_for, :payment_drawn_on, :payment_in_favour_of, :payable_at, :terms_condition, :declaration, :applicant_user_id, :created_at, :updated_at
+json.url form_a1_url(form_a1, format: :json)

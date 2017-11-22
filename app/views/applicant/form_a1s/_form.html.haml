@@ -1,85 +1,238 @@
-= form_for [:applicant,@form_a1] do |f|
-  - if @form_a1.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@form_a1.errors.count, "error")} prohibited this form_a1 from being saved:"
-      %ul
-        - @form_a1.errors.full_messages.each do |message|
-          %li= message
+.card
+  .card-body
+    = form_for [:applicant,@form_a1] do |f|
+      - if @form_a1.errors.any?
+        #error_explanation
+          %h2= "#{pluralize(@form_a1.errors.count, "error")} prohibited this form_a1 from being saved:"
+          %ul
+            - @form_a1.errors.full_messages.each do |message|
+              %li= message
+      .container
+        .row.justify-content-md-center
+          .col-md-auto
+            %center
+              =image_tag('Ashoka_Stamva.png')
+              %h5.mt10.blue-text FORM 'A1'
+              %h5.mt10.grey-text MEMORANDUM OF INTIMATION
+              %h5.mt10.blue-text
+                %i [See Clause 8(2)]
+        .row.mt10
+          .col.col-lg-1
+            %label.grey-text 1.
+          .col.col-lg-11
+            %h6.grey-text
+              %strong Details of the Notified Authority to whom application is submitted.
+            .form-group.row
+              = f.label :role, 'Designation of Notified Authority:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-9
+                =# f.text_field :role, class: 'form-control'
+                %label.col-form-label
+                  %h5 DDA (এম এফ)(রাজ্য)
+            .form-group.row
+              = f.label :place, 'Place:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :place
+            .form-group.row
+              = f.label :state, 'State of:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :state
+        .row.mt10
+          .col.col-lg-1
+            %label.grey-text 2.
+          .col.col-lg-11
+            %h6.grey-text
+              %strong Details of the applicant:
+            .form-group.row
+              = f.label :applicant_name, '(a) Name of the applicant:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :applicant_name
+            .form-group.row
+              = f.label :concern_name, '(b) Name of the concern:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :concern_name
+            .form-group.row
+              = f.label :postal_address, '(c) Postal address with telephone number:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_area :postal_address, class: 'form-control'
+        .row.mt10
+          .col.col-lg-1
+            %label.grey-text 3.
+          .col.col-lg-11
+            %h6.grey-text
+              %strong Place of business : (Please give full address):
+            .form-group.row
+              %label{class: 'col-sm-3 col-form-label grey-text'} (i) For sale:
+            .form-group.row
+              = f.label :role, 'State:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-9
+                %label.col-form-label
+                  %h5 পশ্চিমবঙ্গ
+            .form-group.row
+              = f.label :district, 'District', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :district
+            .form-group.row
+              = f.label :subdivision, 'Sub Division', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :subdivision
+            .form-group.row
+              = f.label :extended_address_type, 'Address Type', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :extended_address_type
+            .form-group.row
+              %label{class: 'col-sm-3 col-form-label grey-text'} P.O.
+              .col-sm-7
+                = f.text_field :extended_address_type
+            .form-group.row
+              %label{class: 'col-sm-3 col-form-label grey-text'} P.S
+              .col-sm-7
+                = f.text_field :extended_address_type
+            .form-group.row
+              %label{class: 'col-sm-3 col-form-label grey-text'} Pin
+              .col-sm-7
+                = f.text_field :extended_address_type
+            .form-group.row
+              %label{class: 'col-sm-3 col-form-label grey-text'} Road
+              .col-sm-7
+                = f.text_field :extended_address_type
 
-  .field
-    = f.label :role
-    = f.text_field :role
-  .field
-    = f.label :place
-    = f.text_field :place
-  .field
-    = f.label :state
-    = f.text_field :state
-  .field
-    = f.label :applicant_name
-    = f.text_field :applicant_name
-  .field
-    = f.label :concern_name
-    = f.text_field :concern_name
-  .field
-    = f.label :postal_address
-    = f.text_area :postal_address
-  .field
-    = f.label :district
-    = f.text_field :district
-  .field
-    = f.label :subdivision
-    = f.text_field :subdivision
-  .field
-    = f.label :extended_address_type
-    = f.text_field :extended_address_type
-  .field
-    = f.label :extended_address
-    = f.text_field :extended_address
-  .field
-    = f.label :certificate_type
-    = f.text_field :certificate_type
-  .field
-    = f.label :jurisdiction
-    = f.text_field :jurisdiction
-  .field
-    = f.label :registration_fees
-    = f.text_field :registration_fees
-  .field
-    = f.label :challan_no
-    = f.text_field :challan_no
-  .field
-    = f.label :challan_submission_date
-    = f.date_select :challan_submission_date
-  .field
-    = f.label :bank_name
-    = f.text_field :bank_name
-  .field
-    = f.label :enclose_dd_no
-    = f.text_field :enclose_dd_no
-  .field
-    = f.label :enclose_dd_date
-    = f.date_select :enclose_dd_date
-  .field
-    = f.label :payment_for
-    = f.text_field :payment_for
-  .field
-    = f.label :payment_drawn_on
-    = f.text_field :payment_drawn_on
-  .field
-    = f.label :payment_in_favour_of
-    = f.text_field :payment_in_favour_of
-  .field
-    = f.label :payable_at
-    = f.text_field :payable_at
-  .field
-    = f.label :terms_condition
-    = f.check_box :terms_condition
-  .field
-    = f.label :declaration
-    = f.check_box :declaration
-  .field
-    = f.label :applicant_user
-    = f.text_field :applicant_user
-  .actions
-    = f.submit 'Save'
+            .form-group.row
+              %label{class: 'col-sm-3 col-form-label grey-text'} (i) For Storage:
+              .col-sm-7
+                %select#exampleFormControlSelect2.form-control{:multiple => "multiple"}
+                  %option Store 1
+                  %option Store 2
+        .row.mt10
+          .col.col-lg-1
+            %label.grey-text 4.
+          .col.col-lg-3
+            %h6.grey-text
+              %strong Whether the application is for:
+          .col-lg-8
+            %label
+              %h5 Wholesalers Marketing Certificate FOR রাজ্য
+        .row.mt10
+          .col.col-lg-1
+            %label.grey-text 5.
+          .col.col-lg-3
+            %h6.grey-text
+              %strong Details of fertiliser and their source in Form '0':
+          .col-lg-8
+            %label
+              %h5.yellow-text Details attached on Annexure - A*
+        .row.mt10
+          .col.col-lg-1
+            %label.grey-text 6.
+          .col.col-lg-11
+            .form-group.row
+              = f.label :registration_fees, 'Registration Fee:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :registration_fees
+            .form-group.row
+              = f.label :challan_no, 'Vide Challan No.:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :challan_no
+            .form-group.row
+              = f.label :challan_submission_date, 'Dated:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :challan_submission_date
+            .form-group.row
+              = f.label :bank_name, 'Bank/ Treasury:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :bank_name
+            .form-group.row
+              = f.label :enclose_dd_no, 'Enclose Demand Draft No.:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :enclose_dd_no
+            .form-group.row
+              = f.label :enclose_dd_date, 'Enclose Demand Draft Dated:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :enclose_dd_date
+            .form-group.row
+              = f.label :payment_for, 'For:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :payment_for
+            .form-group.row
+              = f.label :payment_drawn_on, 'Drawn on:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :payment_drawn_on
+            .form-group.row
+              = f.label :payment_in_favour_of, 'In favour of:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :payment_in_favour_of
+            .form-group.row
+              = f.label :payable_at, 'Payable at:', class: 'col-sm-3 col-form-label grey-text'
+              .col-sm-7
+                = f.text_field :payable_at
+        .row.mt10
+          .col.col-lg-1
+            %label.grey-text 7.
+          .col.col-lg-11
+            %h6.grey-text
+              %strong Whether the intimation is for an authorisation letter or a renewal thereof.
+            %i.grey-text (Note: In case the intimation is for renewal of authorisation letter, the acknowledgement in Form A2 should be submitted for necessary endorsement thereon.)
+        .row.mt10
+          .col.col-lg-1
+            %label.grey-text 8.
+          .col.col-lg-11
+            %h6.grey-text
+              %strong Any other relevant information.
+            .form-check
+              %label.form-check-label.grey-text
+                = f.check_box :terms_condition
+                I have read the terms and conditions of eligibility for submission of Memorandum of Intimation and undertake that the same will be complied by me and in token of the same, I have signed the same & is enclosed herewith.
+            %br
+            %br
+            %i.grey-text Date:
+            %br
+            %i.grey-text.right Signature of applicant(s)
+            %br
+            %i.grey-text Place:
+            %h6.grey-text.mt50
+              %strong Terms & Conditions of authorisation
+            %ol.grey-text
+              %li I shall comply with the provision of the Fertiliser (Control) Order, 1985 and the notifications issued thereunder for the time being in force.
+
+              %li I shall comply with the provision of the Fertiliser (Control) Order, 1985 and the notifications issued thereunder for the time being in force.
+
+              %li I shall from time to time report to the Notified Authority and inform about change in the premises of sale depot and godowns attached tosale depot.
+
+              %li I shall also submit in time all the returns as may be prescribed by the State Government.
+
+              %li I shall not sell fertilisers for industrial use.
+
+              %li I shall file a separate Memorandum of Intimation for, where the storage point is located outside the area jurisdiction of the Notified Authority where the sale depot is located.
+
+              %li I shall file a separate MOI for each place when the business of selling fertilisers is intended to be carried on at more than one place.
+
+              %li I shall file separate MOI if I carry on the business of fertilisers both as retail and wholesale dealer.
+
+              %li I confirm that my previous certificate of Registration or Authorisation is not under Suspension or Cancellation or debarred from selling of fertilisers.
+            %h6.grey-text.mt50
+              %strong DECLARATION:
+            .form-check
+              %label.form-check-label.grey-text
+                = f.check_box :declaration
+                I/ We declare that the information given above is true to the best of my/our knowledge and belief and no part thereof is false or no material information has been concealed.
+            %br
+            %br
+            %i.grey-text Date:
+            %br
+            %i.grey-text.right Signature of applicant(s)
+            %br
+            %i.grey-text Place:
+
+        .row.mt50
+          .col.col-lg-1
+          .col.col-lg-11
+            .actions
+              = f.submit 'Save', class: 'btn btn-primary'
+      -# .field
+      -#   = f.label :certificate_type
+      -#   = f.text_field :certificate_type
+      -# .field
+      -#   = f.label :jurisdiction
+      -#   = f.text_field :jurisdiction
+      -# .field
+      -#   = f.label :applicant_user
+      -#   = f.text_field :applicant_user

@@ -74,8 +74,19 @@ html {
 }
 .mt200 { margin-top: 200px; }
 .mt100 { margin-top: 100px; }
+.mt50 { margin-top: 50px; }
+.mt10 { margin-top: 10px; }
 .mb30 { margin-bottom: 30px; }
 
+.blue-text {
+  color: #0101ff !important;
+}
+.grey-text {
+  color: #73879C !important;
+}
+.yellow-text {
+  color: #c19622 !important;
+}
 // Material design components
 input[type=text],
 input[type=password],
@@ -572,7 +583,7 @@ textarea.md-textarea {
   }
   ul ul li.active > a {
     color: #fff;
-    background: inherit;    
+    background: inherit;
   }
   a[data-toggle="collapse"] {
     position: relative;

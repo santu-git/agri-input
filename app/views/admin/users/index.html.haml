@@ -1,19 +1,27 @@
-%h1 Listing users
-
+%h1 Listing User
 %table
   %thead
     %tr
-      %th
-      %th
-      %th
-
+      %th Full Name
+      %th Email
+      %th Phone no.
+      %th District Name
+      %th Block Name
+      %th User Type
+      %th Action
+      
   %tbody
     - @users.each do |user|
-      %tr
-        %td= link_to 'Show', user
-        %td= link_to 'Edit', edit_admin_user_path(user)
-        %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
+      - user.designations.each do |designation|
+        %tr
+          %td=user.admin_profile.name
+          %td=user.email
+          %td=user.admin_profile.mobile_no
+          %td=designation.district.name[@language]
+          %td=designation.block.name[@language]                        
+          %td=designation.role.name              
+          %td= link_to 'Show', user
+          %td= link_to 'Edit', edit_admin_user_path(user)
+          %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
 
-%br
-
-= link_to 'New User', new_admin_user_path
+%br         

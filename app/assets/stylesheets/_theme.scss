@@ -520,12 +520,14 @@ textarea.md-textarea {
   min-width: $sidebar-width;
   max-width: $sidebar-width;
   height: 100vh;
-  background: rgba(70, 90, 233, 0.94);
+  background: rgba(22,159,255, 0.95);
   color: #fff;
   transition: all 0.3s;
   position: fixed;
   overflow-x: hidden;
   overflow-y: auto;
+  // box-shadow: 0 1px 8px rgba(0,0,0,.3);
+  box-shadow: 8px 0px 18px -8px rgba(0,0,0,0.75);
   .sidebar-header {
     padding: 15px;
   }
@@ -542,15 +544,24 @@ textarea.md-textarea {
     display: block;
     color: #c7cdf8;
     border-radius: 5px;
+    margin-bottom: 4px;
+    i {
+      width: 2rem;
+      font-size: 1.7rem;
+      display: block;
+      float: left;
+      text-align: center;
+      margin-right: 1.1rem;
+    }
   }
   ul li a:hover {
     color: #FFF;
-    background: rgba(59, 35, 185, 0.1);
+    background: rgba(13,101,163, 0.1);
     text-decoration: none;
   }
   ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: rgba(59, 35, 185, 0.3);
+    background: rgba(13,101,163, 0.3);
   }
   ul ul a {
     font-size: 1.0em !important;
@@ -574,9 +585,14 @@ textarea.md-textarea {
   }
 }
 #sidebar.applicant {
-  background: rgba(22,159,255, 0.95);
+  background: rgba(70, 90, 233, 0.94);
   ul li.active > a, a[aria-expanded="true"] {
-    background: rgba(13,101,163, 0.3);
+    background: rgba(59, 35, 185, 0.4);
+  }
+  ul li a:hover {
+    color: #FFF;
+    background: rgba(59, 35, 185, 0.1);
+    text-decoration: none;
   }
 }
 #sidebar.active {
@@ -588,7 +604,7 @@ textarea.md-textarea {
   width: 100%;
   height: 100vh;
   overflow-y: auto;
-  background-color: rgba(255, 255, 255, 0.94);
+  background-color: rgba(255, 255, 255, 0.95);
   padding: 20px;
 }
 #content.active {

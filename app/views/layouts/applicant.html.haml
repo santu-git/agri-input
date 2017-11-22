@@ -6,6 +6,7 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
+    %link{:href => "https://fonts.googleapis.com/icon?family=Material+Icons", :rel => "stylesheet"}/
 
   %body.applicant-body
     .wrapper
@@ -18,7 +19,10 @@
         / Sidebar Links
         %ul.list-unstyled.components
           %li.active
-            %a{:href => root_path} Dashboard
+            %a{:href => root_path}
+              %i.material-icons dashboard
+              Dashboard
+
           %li
             %a{:href => "#"} Sales applications
           %li

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119172654) do
+ActiveRecord::Schema.define(version: 20171121130326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 20171119172654) do
     t.bigint "applicant_user_id"
     t.bigint "state_id"
     t.bigint "district_id"
+    t.bigint "subdivision_id"
     t.string "extended_type"
     t.hstore "extended_data"
     t.datetime "created_at", null: false
@@ -125,6 +126,7 @@ ActiveRecord::Schema.define(version: 20171119172654) do
     t.index ["applicant_user_id"], name: "index_communication_addresses_on_applicant_user_id"
     t.index ["district_id"], name: "index_communication_addresses_on_district_id"
     t.index ["state_id"], name: "index_communication_addresses_on_state_id"
+    t.index ["subdivision_id"], name: "index_communication_addresses_on_subdivision_id"
   end
 
   create_table "designations", force: :cascade do |t|
@@ -162,6 +164,45 @@ ActiveRecord::Schema.define(version: 20171119172654) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "form_a1s", force: :cascade do |t|
+    t.bigint "role_id"
+    t.string "place_type"
+    t.bigint "place_id"
+    t.bigint "state_id"
+    t.string "applicant_name"
+    t.string "concern_name"
+    t.text "postal_address"
+    t.bigint "district_id"
+    t.bigint "subdivision_id"
+    t.string "extended_address_type"
+    t.hstore "extended_address"
+    t.bigint "certification_type_id"
+    t.bigint "jurisdiction_id"
+    t.decimal "registration_fees"
+    t.string "challan_no"
+    t.date "challan_submission_date"
+    t.string "bank_name"
+    t.string "enclose_dd_no"
+    t.date "enclose_dd_date"
+    t.string "payment_for"
+    t.string "payment_drawn_on"
+    t.string "payment_in_favour_of"
+    t.string "payable_at"
+    t.boolean "terms_condition"
+    t.boolean "declaration"
+    t.bigint "applicant_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["applicant_user_id"], name: "index_form_a1s_on_applicant_user_id"
+    t.index ["certification_type_id"], name: "index_form_a1s_on_certification_type_id"
+    t.index ["district_id"], name: "index_form_a1s_on_district_id"
+    t.index ["jurisdiction_id"], name: "index_form_a1s_on_jurisdiction_id"
+    t.index ["place_type", "place_id"], name: "index_form_a1s_on_place_type_and_place_id"
+    t.index ["role_id"], name: "index_form_a1s_on_role_id"
+    t.index ["state_id"], name: "index_form_a1s_on_state_id"
+    t.index ["subdivision_id"], name: "index_form_a1s_on_subdivision_id"
+  end
+
   create_table "form_masters", force: :cascade do |t|
     t.string "name"
     t.string "identifier"
@@ -170,13 +211,14 @@ ActiveRecord::Schema.define(version: 20171119172654) do
   end
 
   create_table "jurisdictions", force: :cascade do |t|
-    t.string "name"
+    t.hstore "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "mouzas", force: :cascade do |t|
     t.hstore "name"
+    t.string "jl_number"
     t.bigint "block_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -249,6 +291,7 @@ ActiveRecord::Schema.define(version: 20171119172654) do
   add_foreign_key "communication_addresses", "applicant_users"
   add_foreign_key "communication_addresses", "districts"
   add_foreign_key "communication_addresses", "states"
+  add_foreign_key "communication_addresses", "subdivisions"
   add_foreign_key "designations", "admin_users"
   add_foreign_key "designations", "blocks"
   add_foreign_key "designations", "districts"
@@ -256,6 +299,13 @@ ActiveRecord::Schema.define(version: 20171119172654) do
   add_foreign_key "designations", "states"
   add_foreign_key "designations", "subdivisions"
   add_foreign_key "districts", "states"
+  add_foreign_key "form_a1s", "applicant_users"
+  add_foreign_key "form_a1s", "certification_types"
+  add_foreign_key "form_a1s", "districts"
+  add_foreign_key "form_a1s", "jurisdictions"
+  add_foreign_key "form_a1s", "roles"
+  add_foreign_key "form_a1s", "states"
+  add_foreign_key "form_a1s", "subdivisions"
   add_foreign_key "mouzas", "blocks"
   add_foreign_key "qualifications", "applicant_users"
   add_foreign_key "qualifications", "educations"

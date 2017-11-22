@@ -1,0 +1,69 @@
+%h1 Listing form_a1s
+
+%table
+  %thead
+    %tr
+      %th Role
+      %th Place
+      %th State
+      %th Applicant name
+      %th Concern name
+      %th Postal address
+      %th District
+      %th Subdivision
+      %th Extended address type
+      %th Extended address
+      %th Certificate type
+      %th Jurisdiction
+      %th Registration fees
+      %th Challan no
+      %th Challan submission date
+      %th Bank name
+      %th Enclose dd no
+      %th Enclose dd date
+      %th Payment for
+      %th Payment drawn on
+      %th Payment in favour of
+      %th Payable at
+      %th Terms condition
+      %th Declaration
+      %th Applicant user
+      %th
+      %th
+      %th
+
+  %tbody
+    - @form_a1s.each do |form_a1|
+      %tr
+        %td= form_a1.role
+        %td= form_a1.place
+        %td= form_a1.state
+        %td= form_a1.applicant_name
+        %td= form_a1.concern_name
+        %td= form_a1.postal_address
+        %td= form_a1.district
+        %td= form_a1.subdivision
+        %td= form_a1.extended_address_type
+        %td= form_a1.extended_address
+        %td= form_a1.certificate_type
+        %td= form_a1.jurisdiction
+        %td= form_a1.registration_fees
+        %td= form_a1.challan_no
+        %td= form_a1.challan_submission_date
+        %td= form_a1.bank_name
+        %td= form_a1.enclose_dd_no
+        %td= form_a1.enclose_dd_date
+        %td= form_a1.payment_for
+        %td= form_a1.payment_drawn_on
+        %td= form_a1.payment_in_favour_of
+        %td= form_a1.payable_at
+        %td= form_a1.terms_condition
+        %td= form_a1.declaration
+        %td= form_a1.applicant_user
+        %td= link_to 'Show', form_a1
+        %td= link_to 'Edit', edit_form_a1_path(form_a1)
+        %td= link_to 'Destroy', form_a1, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Form a1', new_form_a1_path

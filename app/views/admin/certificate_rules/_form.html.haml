@@ -8,7 +8,7 @@
 
   .field
     = f.label :jurisdiction_id
-    = f.select :jurisdiction_id, Jurisdiction.all.collect{|j| [j.name, j.id]}, {prompt: "Select jurisdiction"}
+    = f.select :jurisdiction_id, Jurisdiction.all.collect{|j| [j.name[@language], j.id]}, {prompt: "Select jurisdiction"}
   .field
     = f.label :certification_type_id
     = f.select :certification_type_id, CertificationType.all.collect{|ct| [ct.name, ct.id]}, {prompt: "Select certification type"}

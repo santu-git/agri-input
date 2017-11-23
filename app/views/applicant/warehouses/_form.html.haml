@@ -1,39 +1,53 @@
-= form_with(model: [:applicant,warehouse], local: true) do |form|
-  - if warehouse.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(warehouse.errors.count, "error")
-        prohibited this warehouse from being saved:
-      %ul
-        - warehouse.errors.full_messages.each do |message|
-          %li= message
-  .field
-    = form.label :name
-    = form.text_field :name, id: :warehouse_name
-  .field
-    = form.label :owner_name
-    = form.text_field :owner_name, id: :warehouse_owner_name
-  .field
-    = form.label :state_id
-    = form.select :state_id, State.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }, id: :warehouse_state_id, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#warehouse_district_id'}
-  .field
-    = form.label :district_id
-    = form.select :district_id, District.all.collect{|p| [p.name['en'], p.id]}, {prompt: 'Select district'},id: :warehouse_district_id
-  .field
-    = form.label :post_office
-    = form.text_field :post_office, id: :warehouse_post_office
-  .field
-    = form.label :police_station
-    = form.text_field :police_station, id: :warehouse_police_station
-  .field
-    = form.label :pincode
-    = form.text_field :pincode, id: :warehouse_pincode
-  .field
-    = form.label :postal_address
-    = form.text_area :postal_address, id: :warehouse_postal_address
-  .field
-    = form.label :status
-    = form.text_field :status, id: :warehouse_status
-  = form.hidden_field :applicant_user_id, id: :warehouse_applicant_user_id, value: current_applicant_user.id
-  .actions
-    = form.submit
+.card
+  .card-body
+    %h4.card-title="#{params[:action].humanize} warehouse"
+    = form_with(model: [:applicant,warehouse], local: true) do |form|
+      - if warehouse.errors.any?
+        #error_explanation
+          %h2
+            = pluralize(warehouse.errors.count, "error")
+            prohibited this warehouse from being saved:
+          %ul
+            - warehouse.errors.full_messages.each do |message|
+              %li= message
+      .form-group.row
+        = form.label :name, class: 'col-sm-3 col-form-label'
+        .col-sm-7
+          = form.text_field :name, id: :warehouse_name
+      .form-group.row
+        = form.label :owner_name, class: 'col-sm-3 col-form-label'
+        .col-sm-7
+          = form.text_field :owner_name, id: :warehouse_owner_name
+      .form-group.row
+        = form.label :state_id, class: 'col-sm-3 col-form-label'
+        .col-sm-7
+          = form.select :state_id, State.all.collect {|p| [ p.name['en'], p.id ] }, { prompt: 'Select state' }, id: :warehouse_state_id, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#warehouse_district_id'}, class: 'form-control'
+      .form-group.row
+        = form.label :district_id, class: 'col-sm-3 col-form-label'
+        .col-sm-7
+          = form.select :district_id, District.all.collect{|p| [p.name['en'], p.id]}, {prompt: 'Select district'},id: :warehouse_district_id, class: 'form-control'
+      .form-group.row
+        = form.label :post_office, class: 'col-sm-3 col-form-label'
+        .col-sm-7
+          = form.text_field :post_office, id: :warehouse_post_office
+      .form-group.row
+        = form.label :police_station, class: 'col-sm-3 col-form-label'
+        .col-sm-7
+          = form.text_field :police_station, id: :warehouse_police_station
+      .form-group.row
+        = form.label :pincode, class: 'col-sm-3 col-form-label'
+        .col-sm-7
+          = form.text_field :pincode, id: :warehouse_pincode
+      .form-group.row
+        = form.label :postal_address, class: 'col-sm-3 col-form-label'
+        .col-sm-7
+          = form.text_area :postal_address, id: :warehouse_postal_address, class: 'form-control'
+      .form-group.row
+        = form.label :status, class: 'col-sm-3 col-form-label'
+        .col-sm-7
+          = form.text_field :status, id: :warehouse_status
+      = form.hidden_field :applicant_user_id, id: :warehouse_applicant_user_id, value: current_applicant_user.id
+      .form-group.row
+        .col-sm-3
+        .col-sm-7
+          = form.submit 'Save', class: 'btn btn-primary'

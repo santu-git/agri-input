@@ -26,8 +26,20 @@ html {
   letter-spacing: 2px;
   margin-bottom: 5px;
 }
+.justified-body {
+  height: calc( 100vh - 200px );
+}
+.transparent {
+  background-color: transparent !important;
+}
+.p0 {
+  padding: 0px
+}
 .p10 {
   padding: 10px
+}
+.m0 {
+  margin: 0px !important;
 }
 .dn {
   display: none;
@@ -82,11 +94,15 @@ html {
   color: #0101ff !important;
 }
 .grey-text {
-  color: #73879C !important;
+  color: #999 !important;
 }
 .yellow-text {
   color: #c19622 !important;
 }
+.white-text {
+  color: #FFF !important;
+}
+.no-text-decoration { text-decoration: none !important;}
 // Material design components
 input[type=text],
 input[type=password],
@@ -521,6 +537,15 @@ textarea.md-textarea {
     background-color: transparent;
     color: #4285F4;
     border-color: #4285F4; }
+.btn-transparent {
+  border: 2px solid rgba(255,255,255,0);
+  color: #FFF !important;
+  background-color: rgba(255,255,255,0.1); }
+  .btn-transparent:hover, .btn-transparent:focus, .btn-transparent:active, .btn-transparent:active:focus, .btn-transparent.active {
+    background-color: transparent;
+    color: #FFF;
+    border: 2px solid #FFF;
+  }
 .right {
   float: right !important;
 }
@@ -594,18 +619,18 @@ textarea.md-textarea {
     position: relative;
   }
 
-  a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
-    content: '\e259';
-    display: block;
-    position: absolute;
-    right: 20px;
-    font-family: 'Glyphicons Halflings';
-    font-size: 0.6em;
-  }
-
-  a[aria-expanded="true"]::before {
-    content: '\e260';
-  }
+  // a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+  //   content: '\e259';
+  //   display: block;
+  //   position: absolute;
+  //   right: 20px;
+  //   font-family: 'Glyphicons Halflings';
+  //   font-size: 0.6em;
+  // }
+  //
+  // a[aria-expanded="true"]::before {
+  //   content: '\e260';
+  // }
 }
 #sidebar.applicant {
   background: rgba(70, 90, 233, 0.94);

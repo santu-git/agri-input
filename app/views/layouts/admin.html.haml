@@ -13,14 +13,15 @@
       %nav#sidebar
         / Sidebar Header
         .sidebar-header
-          %h1.header-2
-            =image_tag('logo.png', width: 40)
-            agrisnet
+          %a.no-text-decoration{href: admin_root_path}
+            %h1.header-2
+              =image_tag('logo.png', width: 40)
+              agrisnet
         / Sidebar Links
         %ul.list-unstyled.components
           %li{class: current_class?([admin_root_path]) ? 'active' : ''}
             %a{:href => admin_root_path}
-              %i.material-icons timeline
+              %i.material-icons donut_small
               Dashboard
           %li{class: current_controller?('admin/users', params[:controller]) ? 'active' : ''}
             / Link with dropdown items
@@ -37,7 +38,7 @@
             / Link with dropdown items
             %a{"aria-expanded" => current_controller?('admin/educations', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#educationsSubmenu"}
               %i.material-icons local_library
-              Education Manager
+              Educations
               %i.material-icons.right more_horiz
             %ul#educationsSubmenu.collapse.list-unstyled{class: current_controller?('admin/educations', params[:controller]) ? 'show' : ''}
               %li{class: current_class?([admin_educations_path]) ? 'active' : ''}
@@ -46,7 +47,7 @@
                 %a{:href => new_admin_education_path} New Education
           %li{class: current_class?([admin_applicants_path]) ? 'active' : ''}
             %a{:href => admin_applicants_path}
-              %i.material-icons group
+              %i.material-icons supervisor_account
               Applicants
           %li
             %a{:href => "#"}
@@ -56,15 +57,13 @@
             / Link with dropdown items
             %a{"aria-expanded" => current_controller?('admin/certificate_rules', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#certificateRuleSubmenu"}
               %i.material-icons verified_user
-              Role & Certificate
+              Role & Certificates
               %i.material-icons.right more_horiz
             %ul#certificateRuleSubmenu.collapse.list-unstyled{class: current_controller?('admin/certificate_rules', params[:controller]) ? 'show' : ''}
               %li{class: current_class?([admin_certificate_rules_path]) ? 'active' : ''}
                 %a{:href => admin_certificate_rules_path} All role & certificates
               %li{class: current_class?([new_admin_certificate_rule_path]) ? 'active' : ''}
                 %a{:href => new_admin_certificate_rule_path} New role & certificate
-          -# %li
-          -#   = link_to  "Logout", destroy_admin_user_session_path, method: :delete
 
       #content
         %nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top#static-top-navbar

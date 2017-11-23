@@ -13,9 +13,10 @@
       %nav#sidebar.applicant
         / Sidebar Header
         .sidebar-header
-          %h1.header-2
-            =image_tag('logo.png', width: 40)
-            agrisnet
+          %a.no-text-decoration{href: root_path}
+            %h1.header-2
+              =image_tag('logo.png', width: 40)
+              agrisnet
         / Sidebar Links
         %ul.list-unstyled.components
           %li{class: current_class?([root_path]) ? 'active' : ''}

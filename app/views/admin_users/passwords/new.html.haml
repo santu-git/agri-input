@@ -1,10 +1,22 @@
-%h2 Forgot your password?
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  .actions
-    = f.submit "Send me reset password instructions"
-= render "admin_users/shared/links"
+.signin-container
+  .content
+    %nav.navbar.navbar-light.bg-light.justify-content-between.transparent
+      .flex
+      %a.navbar-brand.btn.btn-transparent{href: new_admin_user_session_url} Login
+    .container
+      .row.align-items-center.justify-content-center.justified-body
+        .col-lg-5
+          %h1.header-1
+            =image_tag('logo.png', width: 60)
+            Forgot password?
+
+          = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+            .grey-text
+              = devise_error_messages!
+            .md-form.white
+              = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email'
+            %span.grey-text Enter your email address that you used to register. We'll send you an email with your instructions to retrieve password.
+            %br
+            %br
+            .actions
+              = f.submit "Send me reset password instructions", class: 'btn btn-primary right'

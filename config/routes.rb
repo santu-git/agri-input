@@ -15,9 +15,9 @@ Rails.application.routes.draw do
     resources :applications
     resources :form_a1s
   end
-  
+
   root 'applicant/dashboard#index'
-  
+
   resources :states do
     resources :districts, only: [:index], defaults: { format: 'json' }
   end
@@ -32,16 +32,18 @@ Rails.application.routes.draw do
   resources :blocks do
     resources :mouzas, only: [:index], defaults: { format: 'json' }
   end
-  
+
 
   devise_for :applicant_users, path: 'applicants', controllers: {
     registrations: 'applicant_users/registrations',
-    sessions: 'applicant_users/sessions'
+    sessions: 'applicant_users/sessions',
+    passwords: 'applicant_users/passwords'
   }
 
   devise_for :admin_users, path: 'admins', controllers: {
     registrations: 'admin_users/registrations',
-    sessions: 'admin_users/sessions'
+    sessions: 'admin_users/sessions',
+    passwords: 'admin_users/passwords'
   }
 
   # devise_for :applicant_users, controllers: {

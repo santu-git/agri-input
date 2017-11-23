@@ -502,7 +502,7 @@ textarea.md-textarea {
     font-size: 1.1rem;
     padding: .55rem 2.23rem;
     margin: 6px;
-    border-radius: 2px;
+    border-radius: 4px;
     border: 0;
     -webkit-transition: .2s ease-out;
     transition: .2s ease-out;
@@ -691,13 +691,19 @@ textarea.md-textarea {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+// All card customisation
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 // Table card customization
 .table-card {
   margin: 0 0 24px 0;
   color: rgba(0,0,0,0.87);
   background-color: rgb(255,255,255);
-  border-radius: 2px;
   border: none;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 
   .actionbar {
@@ -711,7 +717,7 @@ textarea.md-textarea {
     flex-flow: row wrap;
     min-height: 56px;
     position: relative;
-    border-radius: 2px 2px 0 0;
+    border-radius: 8px 8px 0 0;
   }
   table {
     border-spacing: 0;

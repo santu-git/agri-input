@@ -10,6 +10,9 @@
             =image_tag('logo.png', width: 60)
             sign in
           = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .grey-text
+              =# notice
+              =# alert
             .md-form.white
               = f.email_field :email, autofocus: true, autocomplete: "off", class: 'form-control', placeholder: 'Email'
             .md-form.white

@@ -1,23 +1,32 @@
-= form_for :application, url: applicant_applications_path do |f|
-  .field
-    = f.label :jurisdiction_id
-    = f.select :jurisdiction_id, Jurisdiction.all.collect{|e| [e.name[@language],e.id]},{ prompt: 'Select' }, class: 'form-control'
-  .field
-    = f.label :state_id
-    = f.select :state_id, State.all.collect {|p| [ p.name[@language], p.id ] }, { prompt: 'Select' }, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#application_district_id'}, class: 'form-control'
-  .field
-    = f.label :district_id
-    = f.select :district_id, [], {prompt: 'Select'}, id: :application_district_id, data:{ dynamic_selectable_url: district_subdivisions_path(':district_id'), dynamic_selectable_target: '#application_subdivision_id'}, class: 'form-control'
-  .field
-    = f.label :subdivision_id
-    = f.select :subdivision_id, [], {prompt: 'Select'}, id: :application_subdivision_id,  class: 'form-control'
-  .field
-    = f.label :certification_type_id
-    = f.select :certification_type_id, CertificationType.all.collect{|ct| [ct.name, ct.id]}, {prompt: 'Select'},  class: 'form-control'
-  .field
-    = f.label :application_form_type
-    = f.select :application_form_type, [['New', 'new'],['Renew','renew']], {prompt: 'Select'},  class: 'form-control'
-    
-    .actions
-  .actions
-    = f.submit 'Save'
+.card
+  .card-body
+    %h4.card-title="#{params[:action].humanize} application"
+    = form_for :application, url: applicant_applications_path do |f|
+      .form-group.row
+        = f.label :jurisdiction_id, class: 'col-sm-3 col-form-label'
+        .col-sm-7
+          = f.select :jurisdiction_id, Jurisdiction.all.collect{|e| [e.name[@language],e.id]},{ prompt: 'Select' }, class: 'form-control'
+      .form-group.row
+        = f.label :state_id, class: 'col-sm-3 col-form-label'
+        .col-sm-7
+          = f.select :state_id, State.all.collect {|p| [ p.name[@language], p.id ] }, { prompt: 'Select' }, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#application_district_id'}, class: 'form-control'
+      .form-group.row
+        = f.label :district_id, class: 'col-sm-3 col-form-label'
+        .col-sm-7
+          = f.select :district_id, [], {prompt: 'Select'}, id: :application_district_id, data:{ dynamic_selectable_url: district_subdivisions_path(':district_id'), dynamic_selectable_target: '#application_subdivision_id'}, class: 'form-control'
+      .form-group.row
+        = f.label :subdivision_id, class: 'col-sm-3 col-form-label'
+        .col-sm-7
+          = f.select :subdivision_id, [], {prompt: 'Select'}, id: :application_subdivision_id,  class: 'form-control'
+      .form-group.row
+        = f.label :certification_type_id, class: 'col-sm-3 col-form-label'
+        .col-sm-7
+          = f.select :certification_type_id, CertificationType.all.collect{|ct| [ct.name, ct.id]}, {prompt: 'Select'},  class: 'form-control'
+      .form-group.row
+        = f.label :application_form_type, class: 'col-sm-3 col-form-label'
+        .col-sm-7
+          = f.select :application_form_type, [['New', 'new'],['Renew','renew']], {prompt: 'Select'},  class: 'form-control'
+      .form-group.row
+        .col-sm-3
+        .col-sm-7
+          = f.submit 'Save', class: 'btn btn-primary'

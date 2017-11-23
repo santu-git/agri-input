@@ -1,8 +1,11 @@
 .signin-container
   .content
+    %nav.navbar.navbar-light.bg-light.justify-content-between.transparent
+      .flex
+      %a.navbar-brand.btn.btn-transparent{href: new_applicant_user_session_url} Applicant Login
     .container
-      .row.justify-content-md-center
-        .col.col-lg-5.mt200
+      .row.align-items-center.justify-content-center.justified-body
+        .col-lg-5
           %h1.header-1
             =image_tag('logo.png', width: 60)
             sign in
@@ -13,4 +16,4 @@
               = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password'
             .actions
               = f.submit "Log in", class: 'btn btn-primary right'
-          =# render "applicant_users/shared/links"
+          = link_to "Forgot your password?", new_password_path(resource_name)

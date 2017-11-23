@@ -696,6 +696,12 @@ textarea.md-textarea {
   border: none;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+  .card-title {
+    color: #a1a1a1;
+    font-family: $font-stack-1;
+    margin: 10px 0 20px 0;
+  }
 }
 // Table card customization
 .table-card {

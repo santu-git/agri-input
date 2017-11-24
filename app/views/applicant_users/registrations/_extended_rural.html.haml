@@ -1,18 +1,24 @@
-.field
-  = form_object.label :extended_data, "Block"
-  = form_object.select "extended_data[:block_id]", [],  { prompt: 'Select' }, id: :sign_up_block_id, data:{ dynamic_selectable_url: block_mouzas_path(':block_id_id'), dynamic_selectable_target: '#sign_up_mouza_id'}, class: 'form-control'
-.field
-  = form_object.label :extended_data, "Mouza"
-  = form_object.select "extended_data[:mouza_id]", [],  { prompt: 'Select' }, id: :sign_up_mouza_id, class: 'form-control'
-.md-form
-  = form_object.text_field "extended_data[:jl_number]", class: 'form-control'
-  = form_object.label :extended_data, "JL number"
-.md-form
-  = form_object.text_field "extended_data[:village]", class: 'form-control'
-  = form_object.label :extended_data, "Village"
-.md-form
-  = form_object.text_field "extended_data[:dag_no]", class: 'form-control'
-  = form_object.label :extended_data, "Dag No"
-.md-form
-  = form_object.text_field "extended_data[:khatian_no]", class: 'form-control'
-  = form_object.label :extended_data, "Khatian No"
+.form-group.row
+  = form_object.label :extended_data, "Block", class: 'col-sm-4 col-form-label'
+  .col-sm-7
+    = form_object.select "extended_data[:block_id]", [],  { prompt: 'Select' }, id: :sign_up_block_id, data:{ dynamic_selectable_url: block_mouzas_path(':block_id_id'), dynamic_selectable_target: '#sign_up_mouza_id'}, class: 'form-control m0'
+.form-group.row
+  = form_object.label :extended_data, "Mouza", class: 'col-sm-4 col-form-label'
+  .col-sm-7
+    = form_object.select "extended_data[:mouza_id]", [],  { prompt: 'Select' }, id: :sign_up_mouza_id, class: 'form-control m0'
+.form-group.row
+  = form_object.label :extended_data, "JL number", class: 'col-sm-4 col-form-label'
+  .col-sm-7
+    = form_object.text_field "extended_data[:jl_number]"
+.form-group.row
+  = form_object.label :extended_data, "Village", class: 'col-sm-4 col-form-label'
+  .col-sm-7
+    = form_object.text_field "extended_data[:village]"
+.form-group.row
+  = form_object.label :extended_data, "Dag No", class: 'col-sm-4 col-form-label'
+  .col-sm-7
+    = form_object.text_field "extended_data[:dag_no]"
+.form-group.row
+  = form_object.label :extended_data, "Khatian No", class: 'col-sm-4 col-form-label'
+  .col-sm-7
+    = form_object.text_field "extended_data[:khatian_no]"

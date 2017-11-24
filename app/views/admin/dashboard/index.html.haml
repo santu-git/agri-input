@@ -1,2 +1,8 @@
-%p#notice= notice
-%h1 Admin Dashboard
+.container
+  .row.align-items-center.justify-content-center{style: 'height: calc( 100vh - 200px );'}
+    .col-md-auto
+      %div
+        =image_tag('logo.png', width: 70, style: 'float: left')
+        %div{style: 'float: left'}
+          %span{style: 'font-family: Product sans;font-size: 20px; padding: 20px 20px 0px 20px; display: block; color: #7c7c7c'}="Hello #{current_admin_user.admin_profile.name},"
+          %span{style: 'font-family: Product sans;font-size: 16px; color: #afafaf; float: right'}="#{greet}."

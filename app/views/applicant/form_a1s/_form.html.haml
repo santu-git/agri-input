@@ -1,5 +1,7 @@
 .card
   .card-body
+    %h4.card-title Register Licence
+
     = form_for [:applicant,@form_a1] do |f|
       - if @form_a1.errors.any?
         #error_explanation

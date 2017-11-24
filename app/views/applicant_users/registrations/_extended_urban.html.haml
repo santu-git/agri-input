@@ -1,9 +1,12 @@
-.md-form
-  = form_object.text_field "extended_data[:ward_no]", class: 'form-control'
-  = form_object.label :extended_data, "Ward No"
-.md-form
-  = form_object.text_field "extended_data[:holding_no]", class: 'form-control'
-  = form_object.label :extended_data, "Holding No"
-.md-form
-  = form_object.label :extended_data, "Land Mark"
-  = form_object.text_field "extended_data[:land_mark]", class: 'form-control'
+.form-group.row
+  = form_object.label :extended_data, "Ward No", class: 'col-sm-4 col-form-label'
+  .col-sm-7
+    = form_object.text_field "extended_data[:ward_no]"
+.form-group.row
+  = form_object.label :extended_data, "Holding No", class: 'col-sm-4 col-form-label'
+  .col-sm-7
+    = form_object.text_field "extended_data[:holding_no]"
+.form-group.row
+  = form_object.label :extended_data, "Land Mark", class: 'col-sm-4 col-form-label'
+  .col-sm-7
+    = form_object.text_field "extended_data[:land_mark]"

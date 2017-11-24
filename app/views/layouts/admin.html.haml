@@ -2,58 +2,88 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Agrisnet Admin
+    %title Admin | Agrisnet
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
+    %link{:href => "https://fonts.googleapis.com/icon?family=Material+Icons", :rel => "stylesheet"}/
+
   %body.admin-body
     .wrapper
       %nav#sidebar
         / Sidebar Header
         .sidebar-header
-          %h1.header-2
-            =image_tag('logo.png', width: 40)
-            agrisnet
+          %a.no-text-decoration{href: admin_root_path}
+            %h1.header-2
+              =image_tag('logo.png', width: 40)
+              agrisnet
         / Sidebar Links
         %ul.list-unstyled.components
-          %li.active
-            %a{:href => admin_root_path} Dashboard
+          %li{class: current_class?([admin_root_path]) ? 'active' : ''}
+            %a{:href => admin_root_path}
+              %i.material-icons donut_small
+              Dashboard
+          %li{class: current_controller?('admin/users', params[:controller]) ? 'active' : ''}
+            / Link with dropdown items
+            %a{"aria-expanded" => current_controller?('admin/users', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#usersSubmenu"}
+              %i.material-icons person
+              Users
+              %i.material-icons.right more_horiz
+            %ul#usersSubmenu.collapse.list-unstyled{class: current_controller?('admin/users', params[:controller]) ? 'show' : ''}
+              %li{class: current_class?([admin_users_path]) ? 'active' : ''}
+                %a{:href => admin_users_path} All users
+              %li{class: current_class?([new_admin_user_path]) ? 'active' : ''}
+                %a{:href => new_admin_user_path} New user
           %li
             / Link with dropdown items
-            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#usersSubmenu"} User Manager
-            %ul#usersSubmenu.collapse.list-unstyled
-              %li
-                %a{:href => admin_users_path} List
-              %li
-                %a{:href => new_admin_user_path} Create
-          %li
-            / Link with dropdown items
-            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#educationsSubmenu"} Education Manager
-            %ul#educationsSubmenu.collapse.list-unstyled
-              %li
-                %a{:href => new_admin_education_path} Create Education
-              %li
+            %a{"aria-expanded" => current_controller?('admin/educations', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#educationsSubmenu"}
+              %i.material-icons local_library
+              Educations
+              %i.material-icons.right more_horiz
+            %ul#educationsSubmenu.collapse.list-unstyled{class: current_controller?('admin/educations', params[:controller]) ? 'show' : ''}
+              %li{class: current_class?([admin_educations_path]) ? 'active' : ''}
                 %a{:href => admin_educations_path} List Educations
+              %li{class: current_class?([new_admin_education_path]) ? 'active' : ''}
+                %a{:href => new_admin_education_path} New Education
+          %li{class: current_class?([admin_applicants_path]) ? 'active' : ''}
+            %a{:href => admin_applicants_path}
+              %i.material-icons supervisor_account
+              Applicants
+          %li
+            %a{:href => "#"}
+              %i.material-icons collections_bookmark
+              Sales applications
           %li
             / Link with dropdown items
-            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#applicantsSubmenu"} Applicant User
-            %ul#applicantsSubmenu.collapse.list-unstyled
-              %li
-                %a{:href => admin_applicants_path} List Applicants
-          %li
-            %a{:href => "#"} Sales applications
-          %li
-            / Link with dropdown items
-            %a{"aria-expanded" => "false", "data-toggle" => "collapse", :href => "#certificateRuleSubmenu"} Role & Certificate
-            %ul#certificateRuleSubmenu.collapse.list-unstyled
-              %li
-                %a{:href => new_admin_certificate_rule_path} Create Role & Certificate
-              %li
-                %a{:href => admin_certificate_rules_path} List Role & Certificate
-          %li
-            = link_to  "Logout", destroy_admin_user_session_path, method: :delete
+            %a{"aria-expanded" => current_controller?('admin/certificate_rules', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#certificateRuleSubmenu"}
+              %i.material-icons verified_user
+              Role & Certificates
+              %i.material-icons.right more_horiz
+            %ul#certificateRuleSubmenu.collapse.list-unstyled{class: current_controller?('admin/certificate_rules', params[:controller]) ? 'show' : ''}
+              %li{class: current_class?([admin_certificate_rules_path]) ? 'active' : ''}
+                %a{:href => admin_certificate_rules_path} All role & certificates
+              %li{class: current_class?([new_admin_certificate_rule_path]) ? 'active' : ''}
+                %a{:href => new_admin_certificate_rule_path} New role & certificate
 
       #content
+        %nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top#static-top-navbar
+          %a.navbar-brand{:href => "#"}=params[:controller].split('/').last.humanize
+          %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+            %span.navbar-toggler-icon
+          #navbarSupportedContent.collapse.navbar-collapse
+            %ul.navbar-nav.ml-auto
+              %li.nav-item
+                %a.nav-link.nav-icon-link.blue{:href => "#"}
+                  %i.material-icons notifications
+              %li.nav-item.dropdown
+                %a#navbarDropdown.nav-link.dropdown-toggle.nav-icon-link.light-grey{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
+                  %i.material-icons person
+                .dropdown-menu.dropdown-menu-right.dropdown-secondary{"aria-labelledby" => "navbarDropdown", style: "position: absolute;"}
+                  %a.dropdown-item{:href => "#"} Profile
+                  %a.dropdown-item{:href => "#"} Change Password
+                  .dropdown-divider
+                  = link_to  "Logout", destroy_admin_user_session_path, method: :delete, class: 'dropdown-item'
+
         -# %button#sidebarCollapse.btn.btn-info.navbar-btn{:type => "button"}
         -#   %i.glyphicon.glyphicon-align-left
         -#   Toggle Sidebar

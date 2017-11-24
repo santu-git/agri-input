@@ -1,8 +1,11 @@
 .signup-container
   .content
+    %nav.navbar.navbar-light.bg-light.justify-content-between.transparent
+      .flex
+      %a.navbar-brand.btn.btn-transparent{href: new_applicant_user_session_url} Login
     .container
       .row.justify-content-md-center
-        .col.col-lg-6.mt100
+        .col.col-lg-6.mt50
           %h1.header-1
             =image_tag('logo.png', width: 60)
             sign up
@@ -11,31 +14,32 @@
 
               = form_for resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true } do |f|
                 = devise_error_messages!
-                .md-form
-                  = f.email_field :email, autofocus: true, class: 'form-control'
-                  = f.label :email
-                .md-form
-                  = f.password_field :password, autocomplete: "off", class: 'form-control'
-                  = f.label :password
-                  - if @minimum_password_length
-                    %em
-                      (#{@minimum_password_length} characters minimum)
-                  %br/
-                .md-form
-                  = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
-                  = f.label :password_confirmation
+                .form-group.row
+                  = f.label :email, class: 'col-sm-4 col-form-label'
+                  .col-sm-7
+                    = f.email_field :email, autofocus: true
+                .form-group.row
+                  = f.label :password, class: 'col-sm-4 col-form-label'
+                  .col-sm-7
+                    = f.password_field :password, autocomplete: "off"
+                .form-group.row
+                  = f.label :password_confirmation, class: 'col-sm-4 col-form-label'
+                  .col-sm-7
+                    = f.password_field :password_confirmation, autocomplete: "off", class: ''
 
                 = f.fields_for :applicant_profile_attributes do |p|
-                  .md-form
-                    = p.text_field :name, class: 'form-control'
-                    = p.label :name, "Full Name"
-                  .md-form
-                    = p.text_field :mobile_no, class: 'form-control'
-                    = p.label :mobile_no, "Mobile"
+                  .form-group.row
+                    = p.label :name, "Full Name", class: 'col-sm-4 col-form-label'
+                    .col-sm-7
+                      = p.text_field :name, class: ''
+                  .form-group.row
+                    = p.label :mobile_no, "Mobile", class: 'col-sm-4 col-form-label'
+                    .col-sm-7
+                      = p.text_field :mobile_no, class: ''
                   %fieldset.form-group
                     .row
-                      %legend.col-form-legend.col-sm-2 Gender
-                      .col-sm-10
+                      %legend.col-form-legend.col-sm-4 Gender
+                      .col-sm-7
                         .form-check
                           %label.form-check-label
                             = p.radio_button :gender, 'male', id: 'genderMale'
@@ -44,57 +48,60 @@
                           %label.form-check-label
                             = p.radio_button :gender, 'female', id: 'genderFemale'
                             Female
-                  .md-form2
-                    = p.label :prefer_language
-                    = p.select :prefer_language, [['English','en'],['Bengali','en']], {} ,class: 'form-control'
-                  .md-form2
-                    = p.label :id_card_type, 'ID Card type'
-                    = p.select :id_card_type, [['Voter Card','voter_card'],['PAN Card','pan_card']], {} ,class: 'form-control'
-                  %br
-                  .md-form
-                    = p.text_field :id_card_number, class: 'form-control'
-                    = p.label :id_card_number, 'ID Card number'
-                  -# .file-field
-                  -#   .btn.btn-primary.btn-sm.waves-effect.waves-light
-                  -#     %span Choose file
-                  -#     %input{:type => "file"}/
-                  -#   .file-path-wrapper
-                  -#     %input.file-path.validate{:placeholder => "Upload your file", :type => "text"}/
+                  .form-group.row
+                    = p.label :prefer_language, class: 'col-sm-4 col-form-label'
+                    .col-sm-7
+                      = p.select :prefer_language, [['English','en'],['Bengali','en']], {} ,class: 'form-control m0'
+                  .form-group.row
+                    = p.label :id_card_type, 'ID Card type', class: 'col-sm-4 col-form-label'
+                    .col-sm-7
+                      = p.select :id_card_type, [['Voter Card','voter_card'],['PAN Card','pan_card']], {} ,class: 'form-control m0'
+                  .form-group.row
+                    = p.label :id_card_number, 'ID Card number', class: 'col-sm-4 col-form-label'
+                    .col-sm-7
+                      = p.text_field :id_card_number
 
-                  .md-form
-                    = p.label :id_card_image, "ID Card image"
-                    %br
-                    = p.file_field :id_card_image, class: 'form-control'
-                  .md-form
-                    = p.date_field :dob, class: 'form-control'
-                    = p.label :dob, 'Date of birth'
+                  .form-group.row
+                    = p.label :id_card_image, "ID Card image", class: 'col-sm-4 col-form-label'
+                    .col-sm-7
+                      = p.file_field :id_card_image, class: 'form-control'
+                  .form-group.row
+                    = p.label :dob, 'Date of birth', class: 'col-sm-4 col-form-label'
+                    .col-sm-7
+                      = p.date_field :dob, class: 'form-control'
                 = f.fields_for :communication_address_attributes do |ca|
-                  .md-form
-                    = ca.text_field :street_no, class: 'form-control'
-                    = ca.label :street_no
-                  .md-form
-                    = ca.text_field :post_office, class: 'form-control'
-                    = ca.label :post_office
-                  .md-form
-                    = ca.text_field :police_station, class: 'form-control'
-                    = ca.label :police_station
-                  .md-form
-                    = ca.text_field :pin_code, class: 'form-control'
-                    = ca.label :pin_code
-                  .field
-                    = ca.label :state_id
-                    = ca.select :state_id, State.all.collect {|p| [ p.name[@language], p.id ] }, { prompt: 'Select' }, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#signup_district_id'}, class: 'form-control'
-                  .field
-                    = ca.label :district_id
-                    = ca.select :district_id, [], {prompt: 'Select'}, id: :signup_district_id, data:{ dynamic_selectable_url: district_subdivisions_path(':district_id'), dynamic_selectable_target: '#signup_subdivision_id'}, class: 'form-control'
-                  .field
-                    = ca.label :subdivision_id
-                    = ca.select :subdivision_id, [], {prompt: 'Select'}, id: :signup_subdivision_id, data:{ dynamic_selectable_url: subdivision_blocks_path(':subdivision_id'), dynamic_selectable_target: '#sign_up_block_id'}, class: 'form-control'
-                  .field
-                    = ca.label :extended_type, "Address Type"
-                    = ca.select :extended_type, [['Urban','urban'],['Rural', 'rural']], {prompt: 'Select Address type'}, class: 'form-control'
-                  -# #extended-form
-                  %br
+                  .form-group.row
+                    = ca.label :street_no, class: 'col-sm-4 col-form-label'
+                    .col-sm-7
+                      = ca.text_field :street_no
+                  .form-group.row
+                    = ca.label :post_office, class: 'col-sm-4 col-form-label'
+                    .col-sm-7
+                      = ca.text_field :post_office
+                  .form-group.row
+                    = ca.label :police_station, class: 'col-sm-4 col-form-label'
+                    .col-sm-7
+                      = ca.text_field :police_station
+                  .form-group.row
+                    = ca.label :pin_code, class: 'col-sm-4 col-form-label'
+                    .col-sm-7
+                      = ca.text_field :pin_code
+                  .form-group.row
+                    = ca.label :state_id, class: 'col-sm-4 col-form-label'
+                    .col-sm-7
+                      = ca.select :state_id, State.all.collect {|p| [ p.name[@language], p.id ] }, { prompt: 'Select' }, data:{ dynamic_selectable_url: state_districts_path(':state_id'), dynamic_selectable_target: '#signup_district_id'}, class: 'form-control m0'
+                  .form-group.row
+                    = ca.label :district_id, class: 'col-sm-4 col-form-label'
+                    .col-sm-7
+                      = ca.select :district_id, [], {prompt: 'Select'}, id: :signup_district_id, data:{ dynamic_selectable_url: district_subdivisions_path(':district_id'), dynamic_selectable_target: '#signup_subdivision_id'}, class: 'form-control m0'
+                  .form-group.row
+                    = ca.label :subdivision_id, class: 'col-sm-4 col-form-label'
+                    .col-sm-7
+                      = ca.select :subdivision_id, [], {prompt: 'Select'}, id: :signup_subdivision_id, data:{ dynamic_selectable_url: subdivision_blocks_path(':subdivision_id'), dynamic_selectable_target: '#sign_up_block_id'}, class: 'form-control m0'
+                  .form-group.row
+                    = ca.label :extended_type, "Address Type", class: 'col-sm-4 col-form-label'
+                    .col-sm-7
+                      = ca.select :extended_type, [['Urban','urban'],['Rural', 'rural']], {prompt: 'Select Address type'}, class: 'form-control m0'
                   #extended_urban_from.dn
                     = render 'extended_urban', form_object: ca
                   #extended_rural_from.dn

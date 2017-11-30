@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121130326) do
+ActiveRecord::Schema.define(version: 20171130071144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,17 @@ ActiveRecord::Schema.define(version: 20171121130326) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_applicant_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_applicant_users_on_reset_password_token", unique: true
+  end
+
+  create_table "appointments", force: :cascade do |t|
+    t.bigint "designation_id"
+    t.bigint "form_a1_id"
+    t.datetime "schedule_time"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["designation_id"], name: "index_appointments_on_designation_id"
+    t.index ["form_a1_id"], name: "index_appointments_on_form_a1_id"
   end
 
   create_table "blocks", force: :cascade do |t|
@@ -193,6 +204,7 @@ ActiveRecord::Schema.define(version: 20171121130326) do
     t.bigint "applicant_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "application_number"
     t.index ["applicant_user_id"], name: "index_form_a1s_on_applicant_user_id"
     t.index ["certification_type_id"], name: "index_form_a1s_on_certification_type_id"
     t.index ["district_id"], name: "index_form_a1s_on_district_id"
@@ -201,6 +213,12 @@ ActiveRecord::Schema.define(version: 20171121130326) do
     t.index ["role_id"], name: "index_form_a1s_on_role_id"
     t.index ["state_id"], name: "index_form_a1s_on_state_id"
     t.index ["subdivision_id"], name: "index_form_a1s_on_subdivision_id"
+  end
+
+  create_table "form_a1s_warehouses", id: false, force: :cascade do |t|
+    t.bigint "form_a1_id", null: false
+    t.bigint "warehouse_id", null: false
+    t.index ["form_a1_id", "warehouse_id"], name: "index_form_a1s_warehouses_on_form_a1_id_and_warehouse_id"
   end
 
   create_table "form_masters", force: :cascade do |t|
@@ -284,6 +302,8 @@ ActiveRecord::Schema.define(version: 20171121130326) do
 
   add_foreign_key "admin_profiles", "admin_users"
   add_foreign_key "applicant_profiles", "applicant_users"
+  add_foreign_key "appointments", "designations"
+  add_foreign_key "appointments", "form_a1s"
   add_foreign_key "blocks", "subdivisions"
   add_foreign_key "certificate_rules", "certification_types"
   add_foreign_key "certificate_rules", "jurisdictions"

@@ -1,0 +1,28 @@
+.card.table-card
+  .actionbar
+    .title Application List
+    .flex
+  
+  %table.table
+    %thead
+      %tr
+        %th Application Number
+        %th Notified Authority
+        %th Jurisdiction
+        %th Concern name	
+          
+  
+    %tbody
+      - @applications.each do |application|
+        %tr
+          %td= application.form_a1.application_number
+          %td= application.form_a1.role.name
+          %td= application.form_a1.jurisdiction.name[@language]
+          %td= application.form_a1.concern_name
+          -# %td= qualification.certificate_number
+          -# %td= qualification.status
+          -# %td= qualification.applicant_user.email
+          -# %td= link_to 'Show', [:applicant,qualification]
+          -# %td= link_to 'Edit', edit_applicant_qualification_path(qualification)
+          -# %td= link_to 'Destroy', [:applicant,qualification], method: :delete, data: { confirm: 'Are you sure?' }
+  

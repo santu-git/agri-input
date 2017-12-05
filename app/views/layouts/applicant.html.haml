@@ -27,7 +27,7 @@
           %li{class: current_controller?('applicant/applications', params[:controller]) ? 'active' : ''}
             / Link with dropdown items
             %a{"aria-expanded" => current_controller?('applicant/applications', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#salesSubmenu"}
-              %i.material-icons collections_bookmark
+              %i.material-icons grain
               Fertilizer
               %i.material-icons.right more_horiz
             %ul#salesSubmenu.collapse.list-unstyled{class: current_controller?('applicant/applications', params[:controller]) ? 'show' : ''}
@@ -35,23 +35,18 @@
                 %a{:href => applicant_applications_path} All applications
               %li{class: current_class?([new_applicant_application_path]) ? 'active' : ''}
                 %a{:href => new_applicant_application_path} New application
-          %li{class: current_controller?('applicant/applications', params[:controller]) ? 'active' : ''}
+          %li
             / Link with dropdown items
-            %a{"aria-expanded" => current_controller?('applicant/applications', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#salesSubmenu"}
-              %i.material-icons collections_bookmark
+            %a
+              %i.material-icons bug_report
               Pesticide
               %i.material-icons.right more_horiz
-          %li{class: current_controller?('applicant/applications', params[:controller]) ? 'active' : ''}
+          %li
             / Link with dropdown items
-            %a{"aria-expanded" => current_controller?('applicant/applications', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#salesSubmenu"}
-              %i.material-icons collections_bookmark
+            %a
+              %i.material-icons local_florist
               Seed
               %i.material-icons.right more_horiz
-          %ul#salesSubmenu.collapse.list-unstyled{class: current_controller?('applicant/applications', params[:controller]) ? 'show' : ''}
-            %li{class: current_class?([applicant_applications_path]) ? 'active' : ''}
-              %a{:href => applicant_applications_path} All applications
-            %li{class: current_class?([new_applicant_application_path]) ? 'active' : ''}
-              %a{:href => new_applicant_application_path} New application
           %li{class: current_controller?('applicant/qualifications', params[:controller]) ? 'active' : ''}
             / Link with dropdown items
             %a{"aria-expanded" => current_controller?('applicant/qualifications', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#usersSubmenu"}
@@ -74,9 +69,9 @@
                 %a{:href => applicant_warehouses_path} All warehouses
               %li{class: current_class?([new_applicant_warehouse_path]) ? 'active' : ''}
                 %a{:href => new_applicant_warehouse_path} New warehouse
-          %li{class: current_class?([root_path]) ? 'active' : ''}
-            %a{:href => root_path}
-              %i.material-icons timeline
+          %li
+            %a{:href => "#"}
+              %i.material-icons filter
               User Manual
       #content
         %nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top#static-top-navbar

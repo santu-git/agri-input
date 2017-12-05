@@ -13,12 +13,12 @@
           
   
     %tbody
-      - @form_a1_applications.each do |form_a1|
+      - @applications.each do |application|
         %tr
-          %td= form_a1.application_number
-          %td= form_a1.role.name
-          %td= form_a1.jurisdiction.name[@language]
-          %td= form_a1.concern_name
+          %td= application.form_a1.application_number
+          %td= application.form_a1.role.name
+          %td= application.form_a1.jurisdiction.name[@language]
+          %td= application.form_a1.concern_name
           -# %td= qualification.certificate_number
           -# %td= qualification.status
           -# %td= qualification.applicant_user.email

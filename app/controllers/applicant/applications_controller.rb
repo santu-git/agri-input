@@ -4,7 +4,7 @@ class Applicant::ApplicationsController < Applicant::BaseController
   # GET /applications
   # GET /applications.json
   def index
-    #@applications = Application.all
+    @form_a1_applications = current_applicant_user.form_a1s
   end
 
   # GET /applications/1
@@ -26,7 +26,7 @@ class Applicant::ApplicationsController < Applicant::BaseController
     
     @url = input_form(application_params)
     respond_to do |format|
-      format.html { redirect_to @url, notice: 'Application was successfully created.' }
+      format.html { redirect_to @redirection_data, notice: 'Application was successfully created.' }
     end
     # respond_to do |format|
     #   if @application.save
@@ -76,8 +76,19 @@ class Applicant::ApplicationsController < Applicant::BaseController
 
     def input_form(data)
       certificate_rule = CertificateRule.where(jurisdiction_id: data[:jurisdiction_id],certification_type_id: data[:certification_type_id]).first
+      data[:role_id] = certificate_rule.role_id
       @form = FormMaster.find(certificate_rule.new_application) if data[:application_form_type] == 'new' 
       @form = FormMaster.find(certificate_rule.renew_application) if data[:application_form_type] == 'renew' 
-      return new_applicant_form_a1_path if @form.identifier == 'form_a1'
+      #return new_applicant_form_a1_path if @form.identifier == 'form_a1'
+      @redirection_data = Hash.new
+      data[:jurisdiction] = Jurisdiction.find(data[:jurisdiction_id]).name["en"]
+      p "Jurisdiction Data ..............."
+      p data
+      #p "Data....... in input_form"
+      #p data
+      @redirection_data[:controller] = 'form_a1s'
+      @redirection_data[:action] = 'new'
+      #@redirection_data.merge(data)
+      @redirection_data[:data]= data
     end
 end

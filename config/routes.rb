@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get '', to: 'dashboard#index', as: 'root'
     resources :educations
     resources :applicants, only: [:index, :show]
+    resources :applications, only: [:index, :show]
     resources :users
     resources :certificate_rules
   end

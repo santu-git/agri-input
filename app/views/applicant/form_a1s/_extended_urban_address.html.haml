@@ -1,0 +1,34 @@
+= form_object.fields_for :extended_address do |fe|
+  = fe.fields_for :urban do |feu|
+    .form-group.row
+      = feu.label :post_office, class: 'col-sm-4 col-form-label'
+      .col-sm-7
+        = feu.text_field :post_office
+    .form-group.row
+      = feu.label :police_station, class: 'col-sm-4 col-form-label'
+      .col-sm-7
+        = feu.text_field :police_station
+    .form-group.row
+      = feu.label :pin_code, class: 'col-sm-4 col-form-label'
+      .col-sm-7
+        = feu.text_field :pin_code
+    .form-group.row
+      = feu.label :road, class: 'col-sm-4 col-form-label'
+      .col-sm-7
+        = feu.text_field :road
+    .form-group.row
+      = feu.label :municipality, class: 'col-sm-4 col-form-label'
+      .col-sm-7
+        = feu.text_field :municipality
+    .form-group.row
+      = feu.label :ward_no, class: 'col-sm-4 col-form-label'
+      .col-sm-7
+        = feu.text_field :ward_no
+    .form-group.row
+      = feu.label :holding_no, class: 'col-sm-4 col-form-label'
+      .col-sm-7
+        = feu.text_field :holding_no
+    .form-group.row
+      = feu.label :land_mark, class: 'col-sm-4 col-form-label'
+      .col-sm-7
+        = feu.text_field :land_mark

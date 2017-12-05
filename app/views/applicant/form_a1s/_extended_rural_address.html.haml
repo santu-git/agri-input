@@ -1,0 +1,27 @@
+= form_object.fields_for :extended_address do |fe|
+  = fe.fields_for :rural do |fer|
+    .form-group.row
+      = fer.label :block_id, class: 'col-sm-4 col-form-label'
+      .col-sm-7
+        = fer.select :block_id, Block.all().collect {|p| [ p.name[@language], p.id ] }, { prompt: 'Select' }, id: :warehouse_state_id, class: 'form-control'
+    .form-group.row
+      = fer.label :mouza_id, class: 'col-sm-4 col-form-label'
+      .col-sm-7
+        = fer.select :mouza_id, Mouza.all().collect {|p| [ p.name[@language], p.id ] }, { prompt: 'Select' }, id: :warehouse_state_id, class: 'form-control'
+    .form-group.row
+      = fer.label :village, class: 'col-sm-4 col-form-label'
+      .col-sm-7
+        = fer.text_field :village
+    .form-group.row
+      = fer.label :dag_no, class: 'col-sm-4 col-form-label'
+      .col-sm-7
+        = fer.text_field :dag_no
+    .form-group.row
+      = fer.label :khatian_no, class: 'col-sm-4 col-form-label'
+      .col-sm-7
+        = fer.text_field :khatian_no
+    .form-group.row
+      = fer.label :road, class: 'col-sm-4 col-form-label'
+      .col-sm-7
+        = fer.text_field :road
+    

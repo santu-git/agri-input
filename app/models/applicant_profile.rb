@@ -14,4 +14,5 @@ class ApplicantProfile < ApplicationRecord
   validates  :id_card_image_file_name, presence: true
   validates  :id_card_image_content_type,  presence: true
   validates  :id_card_image_file_size, presence: true
+  
 end

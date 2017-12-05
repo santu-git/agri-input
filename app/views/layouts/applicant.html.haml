@@ -16,7 +16,7 @@
           %a.no-text-decoration{href: root_path}
             %h1.header-2
               =image_tag('logo.png', width: 40)
-              agrisnet
+              MK Agri Input
         / Sidebar Links
         %ul.list-unstyled.components
           %li{class: current_class?([root_path]) ? 'active' : ''}
@@ -28,14 +28,30 @@
             / Link with dropdown items
             %a{"aria-expanded" => current_controller?('applicant/applications', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#salesSubmenu"}
               %i.material-icons collections_bookmark
-              Sales Application
+              Fertilizer
               %i.material-icons.right more_horiz
             %ul#salesSubmenu.collapse.list-unstyled{class: current_controller?('applicant/applications', params[:controller]) ? 'show' : ''}
               %li{class: current_class?([applicant_applications_path]) ? 'active' : ''}
                 %a{:href => applicant_applications_path} All applications
               %li{class: current_class?([new_applicant_application_path]) ? 'active' : ''}
                 %a{:href => new_applicant_application_path} New application
-
+          %li{class: current_controller?('applicant/applications', params[:controller]) ? 'active' : ''}
+            / Link with dropdown items
+            %a{"aria-expanded" => current_controller?('applicant/applications', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#salesSubmenu"}
+              %i.material-icons collections_bookmark
+              Pesticide
+              %i.material-icons.right more_horiz
+          %li{class: current_controller?('applicant/applications', params[:controller]) ? 'active' : ''}
+            / Link with dropdown items
+            %a{"aria-expanded" => current_controller?('applicant/applications', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#salesSubmenu"}
+              %i.material-icons collections_bookmark
+              Seed
+              %i.material-icons.right more_horiz
+          %ul#salesSubmenu.collapse.list-unstyled{class: current_controller?('applicant/applications', params[:controller]) ? 'show' : ''}
+            %li{class: current_class?([applicant_applications_path]) ? 'active' : ''}
+              %a{:href => applicant_applications_path} All applications
+            %li{class: current_class?([new_applicant_application_path]) ? 'active' : ''}
+              %a{:href => new_applicant_application_path} New application
           %li{class: current_controller?('applicant/qualifications', params[:controller]) ? 'active' : ''}
             / Link with dropdown items
             %a{"aria-expanded" => current_controller?('applicant/qualifications', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#usersSubmenu"}
@@ -44,9 +60,9 @@
               %i.material-icons.right more_horiz
             %ul#usersSubmenu.collapse.list-unstyled{class: current_controller?('applicant/qualifications', params[:controller]) ? 'show' : ''}
               %li{class: current_class?([applicant_qualifications_path]) ? 'active' : ''}
-                %a{:href => applicant_qualifications_path} All qualifications
+                %a{:href => applicant_qualifications_path} List
               %li{class: current_class?([new_applicant_qualification_path]) ? 'active' : ''}
-                %a{:href => new_applicant_qualification_path} New qualification
+                %a{:href => new_applicant_qualification_path} Create
           %li{class: current_controller?('applicant/warehouses', params[:controller]) ? 'active' : ''}
             / Link with dropdown items
             %a{"aria-expanded" => current_controller?('applicant/warehouses', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#warehouseSubmenu"}
@@ -58,7 +74,10 @@
                 %a{:href => applicant_warehouses_path} All warehouses
               %li{class: current_class?([new_applicant_warehouse_path]) ? 'active' : ''}
                 %a{:href => new_applicant_warehouse_path} New warehouse
-
+          %li{class: current_class?([root_path]) ? 'active' : ''}
+            %a{:href => root_path}
+              %i.material-icons timeline
+              User Manual
       #content
         %nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top#static-top-navbar
           %a.navbar-brand{:href => "#"}=params[:controller].split('/').last.humanize

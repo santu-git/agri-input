@@ -27,7 +27,7 @@
           %li{class: current_controller?('applicant/applications', params[:controller]) ? 'active' : ''}
             / Link with dropdown items
             %a{"aria-expanded" => current_controller?('applicant/applications', params[:controller]) ? 'true' : 'false', "data-toggle" => "collapse", :href => "#salesSubmenu"}
-              %i.material-icons grain
+              %i.material-icons local_florist
               Fertilizer
               %i.material-icons.right more_horiz
             %ul#salesSubmenu.collapse.list-unstyled{class: current_controller?('applicant/applications', params[:controller]) ? 'show' : ''}
@@ -44,7 +44,7 @@
           %li
             / Link with dropdown items
             %a
-              %i.material-icons local_florist
+              %i.material-icons grain
               Seed
               %i.material-icons.right more_horiz
           %li{class: current_controller?('applicant/qualifications', params[:controller]) ? 'active' : ''}

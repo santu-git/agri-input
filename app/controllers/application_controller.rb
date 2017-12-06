@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
   # before_action :custom_authentication, :set_language
   before_action :set_language
 
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_language
-    @language =  'en' 
+    @language =  'en'
     @language = current_applicant_user.applicant_profile.prefer_language || 'en' if current_applicant_user
   end
 end

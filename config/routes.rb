@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :certificate_rules
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :educations
+    end
+  end
+
   namespace :admin do
     get '', to: 'dashboard#index', as: 'root'
     resources :educations
@@ -19,6 +24,7 @@ Rails.application.routes.draw do
 
   root 'applicant/dashboard#index'
 
+  resources :certificate_rules
   resources :states do
     resources :districts, only: [:index], defaults: { format: 'json' }
   end
@@ -47,13 +53,4 @@ Rails.application.routes.draw do
     passwords: 'admin_users/passwords'
   }
 
-  # devise_for :applicant_users, controllers: {
-  #   registrations: 'applicant_users/registrations',
-  #   sessions: 'applicant_users/sessions'
-  # }
-
-  # devise_for :admin_users, controllers: {
-  #   registrations: 'admin_users/registrations',
-  #   sessions: 'applicant_users/sessions'
-  # }
 end

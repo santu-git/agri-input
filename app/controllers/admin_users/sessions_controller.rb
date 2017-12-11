@@ -37,7 +37,7 @@ class AdminUsers::SessionsController < Devise::SessionsController
 
     def respond_to_on_create(token)
       respond_to do |format|
-        format.json { render json: { token: token } }
+        format.json { render json: { success: true, token: token, user: resource, message: 'Login Successfull' } }
         format.all { head :no_content }
         format.any(*navigational_formats) { redirect_to after_sign_in_path_for(resource) }
       end

@@ -81,13 +81,14 @@ ActiveRecord::Schema.define(version: 20171130071144) do
 
   create_table "appointments", force: :cascade do |t|
     t.bigint "designation_id"
-    t.bigint "form_a1_id"
+    t.string "appointable_type"
+    t.bigint "appointable_id"
     t.datetime "schedule_time"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["appointable_type", "appointable_id"], name: "index_appointments_on_appointable_type_and_appointable_id"
     t.index ["designation_id"], name: "index_appointments_on_designation_id"
-    t.index ["form_a1_id"], name: "index_appointments_on_form_a1_id"
   end
 
   create_table "blocks", force: :cascade do |t|
@@ -303,7 +304,6 @@ ActiveRecord::Schema.define(version: 20171130071144) do
   add_foreign_key "admin_profiles", "admin_users"
   add_foreign_key "applicant_profiles", "applicant_users"
   add_foreign_key "appointments", "designations"
-  add_foreign_key "appointments", "form_a1s"
   add_foreign_key "blocks", "subdivisions"
   add_foreign_key "certificate_rules", "certification_types"
   add_foreign_key "certificate_rules", "jurisdictions"

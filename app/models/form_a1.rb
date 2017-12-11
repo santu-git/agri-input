@@ -7,6 +7,7 @@ class FormA1 < ApplicationRecord
   belongs_to :certification_type
   belongs_to :jurisdiction
   belongs_to :applicant_user
+  has_many :appointments, as: :appointable
 
   has_and_belongs_to_many :warehouses
 
@@ -21,7 +22,8 @@ class FormA1 < ApplicationRecord
     jurisdiction = self.jurisdiction.name["en"]
     x = Object.const_get(jurisdiction.capitalize).find(self.send("#{jurisdiction.parameterize}_id"))
     designation = x.designations.find_by_role_id(self.role_id)
-    appointment = Appointment.create!({designation: designation, form_a1: self, status: 'new'})
+    self.appointments.build({designation: designation, status: 'new'}).save!
+    self.warehouses.each{|w| w.appointments.build(designation: designation, status: 'new').save!}
   end
   
 end

@@ -4,7 +4,7 @@ class Admin::ApplicationsController < Admin::BaseController
   # GET /applications
   # GET /applications.json
   def index
-    @applications = current_admin_user.designations.last.appointments
+    @applications = current_admin_user.designations.last.appointments.form_a1s
   end
 
   # GET /applications/1
